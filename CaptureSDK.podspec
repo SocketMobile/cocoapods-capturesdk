@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "CaptureSDK"
-  s.version      = "1.4.33"
+  s.version      = "1.4.35"
   s.summary      = "CaptureSDK for Socket Mobile wireless devices."
   s.homepage     = "https://www.socketmobile.com"
   s.license      = { :type => "COMMERCIAL", :file => "LICENSE" }
@@ -8,8 +8,8 @@ Pod::Spec.new do |s|
   s.documentation_url   = "https://docs.socketmobile.com/capture/ios/en/latest/"
   s.platform     = :ios, "11.0"
   s.source       = {
-      :git => "https://github.com/SocketMobile/cocoapods-capturesdk.git",
-      :tag => "1.4.33"
+      :git => "ssh://git@git.socketmobile.com/capture/cocoapods/capture-sdk.git",
+      :tag => "1.4.35"
   }
   s.ios.deployment_target = "11.0"
   s.swift_version = '5.0'
