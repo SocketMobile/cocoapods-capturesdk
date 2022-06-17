@@ -215,100 +215,100 @@ final public class Poly1305 : CaptureSDK.Authenticator {
   final public func authenticate(_ bytes: Swift.Array<Swift.UInt8>) throws -> Swift.Array<Swift.UInt8>
   @objc deinit
 }
-@objc public protocol CaptureHelperDelegate {
+public protocol CaptureHelperDelegate {
 }
-@objc public protocol CaptureHelperErrorDelegate : CaptureSDK.CaptureHelperDelegate {
-  @objc func didReceiveError(_ error: CaptureSDK.SKTResult)
+public protocol CaptureHelperErrorDelegate : CaptureSDK.CaptureHelperDelegate {
+  func didReceiveError(_ error: CaptureSDK.SKTResult)
 }
-@objc public protocol CaptureHelperDevicePresenceDelegate : CaptureSDK.CaptureHelperDelegate {
-  @objc func didNotifyArrivalForDevice(_ device: CaptureSDK.CaptureHelperDevice, withResult result: CaptureSDK.SKTResult)
-  @objc func didNotifyRemovalForDevice(_ device: CaptureSDK.CaptureHelperDevice, withResult result: CaptureSDK.SKTResult)
+public protocol CaptureHelperDevicePresenceDelegate : CaptureSDK.CaptureHelperDelegate {
+  func didNotifyArrivalForDevice(_ device: CaptureSDK.CaptureHelperDevice, withResult result: CaptureSDK.SKTResult)
+  func didNotifyRemovalForDevice(_ device: CaptureSDK.CaptureHelperDevice, withResult result: CaptureSDK.SKTResult)
 }
-@objc public protocol CaptureHelperDeviceManagerPresenceDelegate : CaptureSDK.CaptureHelperDelegate {
-  @objc func didNotifyArrivalForDeviceManager(_ device: CaptureSDK.CaptureHelperDeviceManager, withResult result: CaptureSDK.SKTResult)
-  @objc func didNotifyRemovalForDeviceManager(_ device: CaptureSDK.CaptureHelperDeviceManager, withResult result: CaptureSDK.SKTResult)
+public protocol CaptureHelperDeviceManagerPresenceDelegate : CaptureSDK.CaptureHelperDelegate {
+  func didNotifyArrivalForDeviceManager(_ device: CaptureSDK.CaptureHelperDeviceManager, withResult result: CaptureSDK.SKTResult)
+  func didNotifyRemovalForDeviceManager(_ device: CaptureSDK.CaptureHelperDeviceManager, withResult result: CaptureSDK.SKTResult)
 }
-@objc public protocol CaptureHelperDeviceManagerDiscoveryDelegate : CaptureSDK.CaptureHelperDelegate {
-  @objc func didDiscoverDevice(_ device: Swift.String, fromDeviceManager deviceManager: CaptureSDK.CaptureHelperDeviceManager)
-  @objc func didEndDiscoveryWithResult(_ result: CaptureSDK.SKTResult, fromDeviceManager deviceManager: CaptureSDK.CaptureHelperDeviceManager)
+public protocol CaptureHelperDeviceManagerDiscoveryDelegate : CaptureSDK.CaptureHelperDelegate {
+  func didDiscoverDevice(_ device: Swift.String, fromDeviceManager deviceManager: CaptureSDK.CaptureHelperDeviceManager)
+  func didEndDiscoveryWithResult(_ result: CaptureSDK.SKTResult, fromDeviceManager deviceManager: CaptureSDK.CaptureHelperDeviceManager)
 }
-@objc public protocol CaptureHelperDeviceDecodedDataDelegate : CaptureSDK.CaptureHelperDelegate {
-  @objc func didReceiveDecodedData(_ decodedData: CaptureSDK.SKTCaptureDecodedData?, fromDevice device: CaptureSDK.CaptureHelperDevice, withResult result: CaptureSDK.SKTResult)
+public protocol CaptureHelperDeviceDecodedDataDelegate : CaptureSDK.CaptureHelperDelegate {
+  func didReceiveDecodedData(_ decodedData: CaptureSDK.SKTCaptureDecodedData?, fromDevice device: CaptureSDK.CaptureHelperDevice, withResult result: CaptureSDK.SKTResult)
 }
-@objc public protocol CaptureHelperDevicePowerDelegate : CaptureSDK.CaptureHelperDelegate {
-  @objc func didChangePowerState(_ powerState: CaptureSDK.SKTCapturePowerState, forDevice device: CaptureSDK.CaptureHelperDevice)
-  @objc func didChangeBatteryLevel(_ batteryLevel: Swift.Int, forDevice device: CaptureSDK.CaptureHelperDevice)
+public protocol CaptureHelperDevicePowerDelegate : CaptureSDK.CaptureHelperDelegate {
+  func didChangePowerState(_ powerState: CaptureSDK.SKTCapturePowerState, forDevice device: CaptureSDK.CaptureHelperDevice)
+  func didChangeBatteryLevel(_ batteryLevel: Swift.Int, forDevice device: CaptureSDK.CaptureHelperDevice)
 }
-@objc public protocol CaptureHelperDeviceButtonsDelegate : CaptureSDK.CaptureHelperDelegate {
-  @objc func didChangeButtonsState(_ buttonsState: CaptureSDK.SKTCaptureButtonsState, forDevice device: CaptureSDK.CaptureHelperDevice)
+public protocol CaptureHelperDeviceButtonsDelegate : CaptureSDK.CaptureHelperDelegate {
+  func didChangeButtonsState(_ buttonsState: CaptureSDK.SKTCaptureButtonsState, forDevice device: CaptureSDK.CaptureHelperDevice)
 }
-@objc public protocol CaptureHelperAllDelegate : CaptureSDK.CaptureHelperDeviceButtonsDelegate, CaptureSDK.CaptureHelperDeviceDecodedDataDelegate, CaptureSDK.CaptureHelperDeviceManagerPresenceDelegate, CaptureSDK.CaptureHelperDevicePowerDelegate, CaptureSDK.CaptureHelperDevicePresenceDelegate, CaptureSDK.CaptureHelperErrorDelegate {
+public protocol CaptureHelperAllDelegate : CaptureSDK.CaptureHelperDeviceButtonsDelegate, CaptureSDK.CaptureHelperDeviceDecodedDataDelegate, CaptureSDK.CaptureHelperDeviceManagerPresenceDelegate, CaptureSDK.CaptureHelperDevicePowerDelegate, CaptureSDK.CaptureHelperDevicePresenceDelegate, CaptureSDK.CaptureHelperErrorDelegate {
 }
-@objc @_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers @objcMembers public class CaptureHelperDevice : ObjectiveC.NSObject {
-  @objc public var extensionProperties: Swift.Dictionary<Swift.String, Any>
-  @objc public var deviceInfo: CaptureSDK.SKTCaptureDeviceInfo
-  @objc public var dispatchQueue: Dispatch.DispatchQueue?
-  @objc open func getFriendlyNameWithCompletionHandler(_ completion: @escaping (_ result: CaptureSDK.SKTResult, _ name: Swift.String?) -> Swift.Void)
-  @objc open func setFriendlyName(_ name: Swift.String, withCompletionHandler completion: @escaping (_ result: CaptureSDK.SKTResult) -> Swift.Void)
-  @objc open func getBluetoothAddressWithCompletionHandler(_ completion: @escaping (_ result: CaptureSDK.SKTResult, _ bluetoothAddress: Foundation.Data?) -> Swift.Void)
+@objc @_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers public class CaptureHelperDevice : ObjectiveC.NSObject {
+  public var extensionProperties: Swift.Dictionary<Swift.String, Any>
+  public var deviceInfo: CaptureSDK.SKTCaptureDeviceInfo
+  public var dispatchQueue: Dispatch.DispatchQueue?
+  open func getFriendlyNameWithCompletionHandler(_ completion: @escaping (_ result: CaptureSDK.SKTResult, _ name: Swift.String?) -> Swift.Void)
+  open func setFriendlyName(_ name: Swift.String, withCompletionHandler completion: @escaping (_ result: CaptureSDK.SKTResult) -> Swift.Void)
+  open func getBluetoothAddressWithCompletionHandler(_ completion: @escaping (_ result: CaptureSDK.SKTResult, _ bluetoothAddress: Foundation.Data?) -> Swift.Void)
   open func getTypeWithCompletionHandler(_ completion: @escaping (_ result: CaptureSDK.SKTResult, _ deviceType: Swift.UInt?) -> Swift.Void)
-  @objc open func getFirmwareVersionWithCompletionHandler(_ completion: @escaping (_ result: CaptureSDK.SKTResult, _ version: CaptureSDK.SKTCaptureVersion?) -> Swift.Void)
+  open func getFirmwareVersionWithCompletionHandler(_ completion: @escaping (_ result: CaptureSDK.SKTResult, _ version: CaptureSDK.SKTCaptureVersion?) -> Swift.Void)
   open func getBatteryLevelWithCompletionHandler(_ completion: @escaping (_ result: CaptureSDK.SKTResult, _ batteryLevel: Swift.UInt?) -> Swift.Void)
   open func getPowerStateWithCompletionHandler(_ completion: @escaping (_ result: CaptureSDK.SKTResult, _ powerState: Swift.UInt?) -> Swift.Void)
   open func getButtonsStateWithCompletionHandler(_ completion: @escaping (_ result: CaptureSDK.SKTResult, _ buttonsState: CaptureSDK.SKTCaptureButtonsState?) -> Swift.Void)
   open func getStandConfigWithCompletionHandler(_ completion: @escaping (_ result: CaptureSDK.SKTResult, _ config: CaptureSDK.SKTCaptureStandConfig?) -> Swift.Void)
-  @objc open func setStandConfig(_ config: CaptureSDK.SKTCaptureStandConfig, withCompletionHandler completion: @escaping (_ result: CaptureSDK.SKTResult) -> Swift.Void)
+  open func setStandConfig(_ config: CaptureSDK.SKTCaptureStandConfig, withCompletionHandler completion: @escaping (_ result: CaptureSDK.SKTResult) -> Swift.Void)
   open func getDecodeActionWithCompletionHandler(_ completion: @escaping (_ result: CaptureSDK.SKTResult, _ decodeAction: CaptureSDK.SKTCaptureLocalDecodeAction?) -> Swift.Void)
-  @objc open func setDecodeAction(_ decodeAction: CaptureSDK.SKTCaptureLocalDecodeAction, withCompletionHandler completion: @escaping (_ result: CaptureSDK.SKTResult) -> Swift.Void)
+  open func setDecodeAction(_ decodeAction: CaptureSDK.SKTCaptureLocalDecodeAction, withCompletionHandler completion: @escaping (_ result: CaptureSDK.SKTResult) -> Swift.Void)
   open func getDataAcknowledgmentWithCompletionHandler(_ completion: @escaping (_ result: CaptureSDK.SKTResult, _ dataAcknownledgement: CaptureSDK.SKTCaptureDeviceDataAcknowledgment?) -> Swift.Void)
-  @objc open func setDataAcknowledgment(_ dataAcknowledgment: CaptureSDK.SKTCaptureDeviceDataAcknowledgment, withCompletionHandler completion: @escaping (_ result: CaptureSDK.SKTResult) -> Swift.Void)
-  @objc open func getPostambleWithCompletionHandler(_ completion: @escaping (_ result: CaptureSDK.SKTResult, _ postamble: Swift.String?) -> Swift.Void)
-  @objc open func setPostamble(_ postamble: Swift.String, withCompletionHandler completion: @escaping (_ result: CaptureSDK.SKTResult) -> Swift.Void)
-  @objc open func getDataSourceInfoFromId(_ dataSourceId: CaptureSDK.SKTCaptureDataSourceID, withCompletionHandler completion: @escaping (_ result: CaptureSDK.SKTResult, _ dataSourceInfo: CaptureSDK.SKTCaptureDataSource?) -> Swift.Void)
-  @objc open func setDataSourceInfo(_ dataSource: CaptureSDK.SKTCaptureDataSource, withCompletionHandler completion: @escaping (_ result: CaptureSDK.SKTResult) -> Swift.Void)
-  @objc open func setTrigger(_ trigger: CaptureSDK.SKTCaptureTrigger, withCompletionHandler completion: @escaping (_ result: CaptureSDK.SKTResult) -> Swift.Void)
-  @objc open func setDataConfirmationWithLed(_ led: CaptureSDK.SKTCaptureDataConfirmationLed, withBeep beep: CaptureSDK.SKTCaptureDataConfirmationBeep, withRumble rumble: CaptureSDK.SKTCaptureDataConfirmationRumble, withCompletionHandler completion: @escaping (_ result: CaptureSDK.SKTResult) -> Swift.Void)
-  @objc open func setNotifications(_ notifications: CaptureSDK.SKTCaptureNotifications, withCompletionHandler completion: @escaping (_ result: CaptureSDK.SKTResult) -> Swift.Void)
+  open func setDataAcknowledgment(_ dataAcknowledgment: CaptureSDK.SKTCaptureDeviceDataAcknowledgment, withCompletionHandler completion: @escaping (_ result: CaptureSDK.SKTResult) -> Swift.Void)
+  open func getPostambleWithCompletionHandler(_ completion: @escaping (_ result: CaptureSDK.SKTResult, _ postamble: Swift.String?) -> Swift.Void)
+  open func setPostamble(_ postamble: Swift.String, withCompletionHandler completion: @escaping (_ result: CaptureSDK.SKTResult) -> Swift.Void)
+  open func getDataSourceInfoFromId(_ dataSourceId: CaptureSDK.SKTCaptureDataSourceID, withCompletionHandler completion: @escaping (_ result: CaptureSDK.SKTResult, _ dataSourceInfo: CaptureSDK.SKTCaptureDataSource?) -> Swift.Void)
+  open func setDataSourceInfo(_ dataSource: CaptureSDK.SKTCaptureDataSource, withCompletionHandler completion: @escaping (_ result: CaptureSDK.SKTResult) -> Swift.Void)
+  open func setTrigger(_ trigger: CaptureSDK.SKTCaptureTrigger, withCompletionHandler completion: @escaping (_ result: CaptureSDK.SKTResult) -> Swift.Void)
+  open func setDataConfirmationWithLed(_ led: CaptureSDK.SKTCaptureDataConfirmationLed, withBeep beep: CaptureSDK.SKTCaptureDataConfirmationBeep, withRumble rumble: CaptureSDK.SKTCaptureDataConfirmationRumble, withCompletionHandler completion: @escaping (_ result: CaptureSDK.SKTResult) -> Swift.Void)
+  open func setNotifications(_ notifications: CaptureSDK.SKTCaptureNotifications, withCompletionHandler completion: @escaping (_ result: CaptureSDK.SKTResult) -> Swift.Void)
   open func getNotificationsWithCompletionHandler(_ completion: @escaping (_ result: CaptureSDK.SKTResult, _ notifications: CaptureSDK.SKTCaptureNotifications?) -> Swift.Void)
-  @objc open func setSocketCamOverlayViewParameter(_ parameters: Swift.Dictionary<Swift.String, Any>, withCompletionHandler completion: @escaping (_ result: CaptureSDK.SKTResult) -> Swift.Void)
-  @objc open func getSocketCamOverlayViewParameterWithCompletionHandler(_ completion: @escaping (_ result: CaptureSDK.SKTResult, _ parameter: Swift.Dictionary<Swift.String, Any>?) -> Swift.Void)
-  @objc open func getDeviceSpecificCommand(_ command: Foundation.Data, withCompletionHandler completion: @escaping (_ result: CaptureSDK.SKTResult, _ commandResult: Foundation.Data?) -> Swift.Void)
-  @objc open func setDataFormat(dataFormat: CaptureSDK.SKTCaptureDataFormat, completion: @escaping (_ result: CaptureSDK.SKTResult) -> Swift.Void)
+  open func setSocketCamOverlayViewParameter(_ parameters: Swift.Dictionary<Swift.String, Any>, withCompletionHandler completion: @escaping (_ result: CaptureSDK.SKTResult) -> Swift.Void)
+  open func getSocketCamOverlayViewParameterWithCompletionHandler(_ completion: @escaping (_ result: CaptureSDK.SKTResult, _ parameter: Swift.Dictionary<Swift.String, Any>?) -> Swift.Void)
+  open func getDeviceSpecificCommand(_ command: Foundation.Data, withCompletionHandler completion: @escaping (_ result: CaptureSDK.SKTResult, _ commandResult: Foundation.Data?) -> Swift.Void)
+  open func setDataFormat(dataFormat: CaptureSDK.SKTCaptureDataFormat, completion: @escaping (_ result: CaptureSDK.SKTResult) -> Swift.Void)
   open func getDataFormatWithCompletionHandler(_ completion: @escaping (_ result: CaptureSDK.SKTResult, _ dataFormat: CaptureSDK.SKTCaptureDataFormat?) -> Swift.Void)
-  @objc open func getProperty(_ property: CaptureSDK.SKTCaptureProperty, withCompletionHandler completion: @escaping (_ result: CaptureSDK.SKTResult, _ complete: CaptureSDK.SKTCaptureProperty?) -> Swift.Void)
-  @objc open func setProperty(_ property: CaptureSDK.SKTCaptureProperty, withCompletionHandler completion: @escaping (_ result: CaptureSDK.SKTResult, _ complete: CaptureSDK.SKTCaptureProperty?) -> Swift.Void)
+  open func getProperty(_ property: CaptureSDK.SKTCaptureProperty, withCompletionHandler completion: @escaping (_ result: CaptureSDK.SKTResult, _ complete: CaptureSDK.SKTCaptureProperty?) -> Swift.Void)
+  open func setProperty(_ property: CaptureSDK.SKTCaptureProperty, withCompletionHandler completion: @escaping (_ result: CaptureSDK.SKTResult, _ complete: CaptureSDK.SKTCaptureProperty?) -> Swift.Void)
   @objc deinit
 }
-@objc @_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers @objcMembers public class CaptureHelperDeviceManager : CaptureSDK.CaptureHelperDevice {
-  @objc open func startDiscoveryWithTimeout(_ timeout: ObjectiveC.NSInteger, withCompletionHandler completion: @escaping (_ result: CaptureSDK.SKTResult) -> Swift.Void)
-  @objc open func setFavoriteDevices(_ favorites: Swift.String, withCompletionHandler completion: @escaping (_ result: CaptureSDK.SKTResult) -> Swift.Void)
-  @objc open func getFavoriteDevicesWithCompletionHandler(_ completion: @escaping (_ result: CaptureSDK.SKTResult, _ favorites: Swift.String?) -> Swift.Void)
-  @objc open func getDeviceUniqueIdentifierFromDeviceGuid(_ deviceGuid: Swift.String, withCompletionHandler completion: @escaping (_ result: CaptureSDK.SKTResult, _ deviceUniqueIdentifier: Swift.String?) -> Swift.Void)
+@objc @_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers public class CaptureHelperDeviceManager : CaptureSDK.CaptureHelperDevice {
+  open func startDiscoveryWithTimeout(_ timeout: ObjectiveC.NSInteger, withCompletionHandler completion: @escaping (_ result: CaptureSDK.SKTResult) -> Swift.Void)
+  open func setFavoriteDevices(_ favorites: Swift.String, withCompletionHandler completion: @escaping (_ result: CaptureSDK.SKTResult) -> Swift.Void)
+  open func getFavoriteDevicesWithCompletionHandler(_ completion: @escaping (_ result: CaptureSDK.SKTResult, _ favorites: Swift.String?) -> Swift.Void)
+  open func getDeviceUniqueIdentifierFromDeviceGuid(_ deviceGuid: Swift.String, withCompletionHandler completion: @escaping (_ result: CaptureSDK.SKTResult, _ deviceUniqueIdentifier: Swift.String?) -> Swift.Void)
   @objc deinit
 }
-@objc @_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers @objcMembers public class CaptureHelper : ObjectiveC.NSObject, CaptureSDK.SKTCaptureDelegate {
-  @objc public var extensionProperties: Swift.Dictionary<Swift.String, Any>
-  @objc public var dispatchQueue: Dispatch.DispatchQueue?
-  @objc public static let sharedInstance: CaptureSDK.CaptureHelper
-  @objc public var captureApi: CaptureSDK.SKTCapture? {
-    @objc get
+@objc @_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers public class CaptureHelper : ObjectiveC.NSObject {
+  public var extensionProperties: Swift.Dictionary<Swift.String, Any>
+  public var dispatchQueue: Dispatch.DispatchQueue?
+  public static let sharedInstance: CaptureSDK.CaptureHelper
+  public var captureApi: CaptureSDK.SKTCapture? {
+    get
   }
-  @objc @discardableResult
+  @discardableResult
   open func pushDelegate(_ delegate: CaptureSDK.CaptureHelperDelegate) -> Swift.Bool
-  @objc @discardableResult
+  @discardableResult
   open func popDelegate(_ delegate: CaptureSDK.CaptureHelperDelegate) -> Swift.Bool
-  @objc open func getDevices() -> Swift.Array<CaptureSDK.CaptureHelperDevice>
-  @objc open func getDeviceManagers() -> Swift.Array<CaptureSDK.CaptureHelperDeviceManager>
-  @objc open func openWithAppInfo(_ appInfo: CaptureSDK.SKTAppInfo, withCompletionHandler completion: @escaping (_ result: CaptureSDK.SKTResult) -> Swift.Void)
-  @objc open func closeWithCompletionHandler(_ completion: @escaping (_ result: CaptureSDK.SKTResult) -> Swift.Void)
-  @objc public func didReceive(_ event: CaptureSDK.SKTCaptureEvent, for capture: CaptureSDK.SKTCapture, withResult result: CaptureSDK.SKTResult)
-  @objc open func getVersionWithCompletionHandler(_ completion: @escaping (_ result: CaptureSDK.SKTResult, _ version: CaptureSDK.SKTCaptureVersion?) -> Swift.Void)
+  open func getDevices() -> Swift.Array<CaptureSDK.CaptureHelperDevice>
+  open func getDeviceManagers() -> Swift.Array<CaptureSDK.CaptureHelperDeviceManager>
+  open func openWithAppInfo(_ appInfo: CaptureSDK.SKTAppInfo, withCompletionHandler completion: @escaping (_ result: CaptureSDK.SKTResult) -> Swift.Void)
+  open func closeWithCompletionHandler(_ completion: @escaping (_ result: CaptureSDK.SKTResult) -> Swift.Void)
+  public func didReceive(_ event: CaptureSDK.SKTCaptureEvent, for capture: CaptureSDK.SKTCapture, withResult result: CaptureSDK.SKTResult)
+  open func getVersionWithCompletionHandler(_ completion: @escaping (_ result: CaptureSDK.SKTResult, _ version: CaptureSDK.SKTCaptureVersion?) -> Swift.Void)
   open func getConfirmationModeWithCompletionHandler(_ completion: @escaping (_ result: CaptureSDK.SKTResult, _ confirmationMode: CaptureSDK.SKTCaptureDataConfirmation?) -> Swift.Void)
-  @objc open func setConfirmationMode(_ confirmationMode: CaptureSDK.SKTCaptureDataConfirmation, withCompletionHandler completion: @escaping (_ result: CaptureSDK.SKTResult) -> Swift.Void)
+  open func setConfirmationMode(_ confirmationMode: CaptureSDK.SKTCaptureDataConfirmation, withCompletionHandler completion: @escaping (_ result: CaptureSDK.SKTResult) -> Swift.Void)
   open func getSocketCamStatusWithCompletionHandler(_ completion: @escaping (_ result: CaptureSDK.SKTResult, _ status: CaptureSDK.SKTCaptureSocketCam?) -> Swift.Void)
-  @objc open func setSocketCamStatus(_ status: CaptureSDK.SKTCaptureSocketCam, withCompletionHandler completion: @escaping (_ result: CaptureSDK.SKTResult) -> Swift.Void)
-  @objc open func getProperty(_ property: CaptureSDK.SKTCaptureProperty, withCompletionHandler completion: @escaping (_ result: CaptureSDK.SKTResult, _ complete: CaptureSDK.SKTCaptureProperty?) -> Swift.Void)
-  @objc open func setProperty(_ property: CaptureSDK.SKTCaptureProperty, withCompletionHandler completion: @escaping (_ result: CaptureSDK.SKTResult, _ complete: CaptureSDK.SKTCaptureProperty?) -> Swift.Void)
+  open func setSocketCamStatus(_ status: CaptureSDK.SKTCaptureSocketCam, withCompletionHandler completion: @escaping (_ result: CaptureSDK.SKTResult) -> Swift.Void)
+  open func getProperty(_ property: CaptureSDK.SKTCaptureProperty, withCompletionHandler completion: @escaping (_ result: CaptureSDK.SKTResult, _ complete: CaptureSDK.SKTCaptureProperty?) -> Swift.Void)
+  open func setProperty(_ property: CaptureSDK.SKTCaptureProperty, withCompletionHandler completion: @escaping (_ result: CaptureSDK.SKTResult, _ complete: CaptureSDK.SKTCaptureProperty?) -> Swift.Void)
   @objc deinit
 }
 public enum PKCS7 {

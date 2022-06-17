@@ -198,12 +198,9 @@ typedef unsigned int swift_uint4  __attribute__((__ext_vector_type__(4)));
 #pragma clang diagnostic ignored "-Watimport-in-framework-header"
 #endif
 @import CoreBluetooth;
-@import Dispatch;
 @import Foundation;
 @import ObjectiveC;
 #endif
-
-#import <CaptureSDK/CaptureSDK.h>
 
 #pragma clang diagnostic ignored "-Wproperty-attribute-mismatch"
 #pragma clang diagnostic ignored "-Wduplicate-method-arg"
@@ -226,15 +223,6 @@ typedef SWIFT_ENUM(uint8_t, AuthenticationMode, open) {
   AuthenticationModeAes128 = 0x01,
 };
 
-@class NSString;
-@class SKTCapture;
-@protocol CaptureHelperDelegate;
-@class CaptureHelperDevice;
-@class CaptureHelperDeviceManager;
-@class SKTAppInfo;
-@class SKTCaptureEvent;
-@class SKTCaptureVersion;
-@class SKTCaptureProperty;
 
 /// Main entry point for using Capture
 /// 1- get a Capture instance by using CaptureHelper.sharedInstance
@@ -242,408 +230,23 @@ typedef SWIFT_ENUM(uint8_t, AuthenticationMode, open) {
 /// 3- fill a SKTAppInfo with developer ID, bundle ID and AppKey coming from Socket Mobile developer portal
 /// 4- open Capture with the SKTAppInfo instance
 SWIFT_CLASS("_TtC10CaptureSDK13CaptureHelper")
-@interface CaptureHelper : NSObject <SKTCaptureDelegate>
-/// can store any object that can be used in an extension
-@property (nonatomic, copy) NSDictionary<NSString *, id> * _Nonnull extensionProperties;
-/// dispatch queue that can be set to the
-/// main queue so the completion handlers
-/// can update directly the UI controls
-/// set this property to DispatchQueue.main
-@property (nonatomic, strong) dispatch_queue_t _Nullable dispatchQueue;
-/// static shared instance of CaptureHelper
-SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, strong) CaptureHelper * _Nonnull sharedInstance;)
-+ (CaptureHelper * _Nonnull)sharedInstance SWIFT_WARN_UNUSED_RESULT;
+@interface CaptureHelper : NSObject
 - (nonnull instancetype)init SWIFT_UNAVAILABLE;
 + (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
-/// reference to the Capture API that can be used in
-/// extension class
-@property (nonatomic, readonly, strong) SKTCapture * _Nullable captureApi;
-/// push a delegate reference into the delegates stack
-/// each new View can push its delegate reference and the
-/// last one pushed is the one used for receiving the Capture
-/// delegates.
-/// NOTE: If a device is already connected to the host, doing a pushDelegate
-/// will call the didNotifyArrivalForDevice if the delegate pushed supports
-/// this in its protocol.
-/// \param delegate reference to a delegate to push in the delegates stack
-///
-///
-/// returns:
-///
-/// hasBeenPushed : true is the delegate has been pushed, false otherwise
-- (BOOL)pushDelegate:(id <CaptureHelperDelegate> _Nonnull)delegate;
-- (BOOL)popDelegate:(id <CaptureHelperDelegate> _Nonnull)delegate;
-/// get the list of devices this CaptureHelper has opened
-///
-/// returns:
-/// list of CaptureHelperDevice opened by Capture Helper
-- (NSArray<CaptureHelperDevice *> * _Nonnull)getDevices SWIFT_WARN_UNUSED_RESULT;
-/// get the list of device managers this CaptureHelper has opened
-///
-/// returns:
-/// list of CaptureHelperDeviceManager opened by Capture Helper
-- (NSArray<CaptureHelperDeviceManager *> * _Nonnull)getDeviceManagers SWIFT_WARN_UNUSED_RESULT;
-/// open Capture
-/// Main entry point of the Capture SDK. This method should be called first.
-/// open Capture with the application information which contains
-/// the developer ID, the application Bundle ID and the AppKey that
-/// can be retrieved on the Socket Mobile developer portal
-/// The delegates should be pushed before calling this method to make sure
-/// none of the events are missed.
-/// \param appInfo class containing developer ID, application Bundle ID and the AppKey
-///
-/// \param completionHandler called upon completion with the result code
-///
-- (void)openWithAppInfo:(SKTAppInfo * _Nonnull)appInfo withCompletionHandler:(void (^ _Nonnull)(SKTResult))completion;
-/// close Capture, once this method is called the application won’t
-/// receive anything from Capture
-/// it closes devices and device managers
-/// \param completionHandler called upon complete with the result code
-///
-- (void)closeWithCompletionHandler:(void (^ _Nonnull)(SKTResult))completion;
-/// delegate from Capture that is called each time a Capture event is fired
-/// \param event Capture event sent by Capture to the application
-///
-/// \param capture reference of the capture the event refers to
-///
-/// \param result result code of the event
-///
-- (void)didReceiveEvent:(SKTCaptureEvent * _Nonnull)event forCapture:(SKTCapture * _Nonnull)capture withResult:(SKTResult)result;
-/// retrieve the Capture version
-/// \param completion called upon completion of getting the Capture version
-/// with the result and the version as argument.
-///
-- (void)getVersionWithCompletionHandler:(void (^ _Nonnull)(SKTResult, SKTCaptureVersion * _Nullable))completion;
-/// set the confirmation mode to define how the decoded data should be confirmed.
-/// \param confirmationMode confirmationMode contains the confirmation mode to set Capture with
-///
-/// \param completion called upon completion of setting the confirmation mode
-/// with the result of setting the confirmation mode.
-///
-- (void)setConfirmationMode:(SKTCaptureDataConfirmation)confirmationMode withCompletionHandler:(void (^ _Nonnull)(SKTResult))completion;
-/// set the SocketCam (Scanning using the host camera) status. The status could
-/// be “not supported”, “supported”, “disabled” and “enabled”.
-/// \param status contains the new SocketCam status
-///
-/// \param completion called upon completion of setting the SocketCam status with the
-/// result as argument.
-///
-- (void)setSocketCamStatus:(SKTCaptureSocketCam)status withCompletionHandler:(void (^ _Nonnull)(SKTResult))completion;
-/// get a property using the Capture property object
-/// Usually the get property sends a property without arguments but
-/// the response in case of success contains a property response that
-/// holds the eventual arguments of the property.
-/// \param property reference to the property to set
-///
-/// \param completion receiving the result and the device specific command response if the result is successful
-///
-- (void)getProperty:(SKTCaptureProperty * _Nonnull)property withCompletionHandler:(void (^ _Nonnull)(SKTResult, SKTCaptureProperty * _Nullable))completion;
-/// set a property using the Capture property object
-/// Usually the set property does not return any property arguments,
-/// only the result is interesting to check to know if the set property
-/// has been successful.
-/// \param property reference to the property to set
-///
-/// \param completion receiving the result and the device specific command response if the result is successful
-///
-- (void)setProperty:(SKTCaptureProperty * _Nonnull)property withCompletionHandler:(void (^ _Nonnull)(SKTResult, SKTCaptureProperty * _Nullable))completion;
 @end
 
-
-/// Capture Helper base protocol does not have
-/// any delegate, it could be used for View Controllers
-/// that don’t require any notification from Capture
-SWIFT_PROTOCOL("_TtP10CaptureSDK21CaptureHelperDelegate_")
-@protocol CaptureHelperDelegate
-@end
-
-
-/// Capture Helper protocol to comply in order to receive the device manager arrival, removal notifications
-SWIFT_PROTOCOL("_TtP10CaptureSDK42CaptureHelperDeviceManagerPresenceDelegate_")
-@protocol CaptureHelperDeviceManagerPresenceDelegate <CaptureHelperDelegate>
-/// delegate called when a device manager connects to the host
-/// \param device contains the device manager information, such as device type
-///
-/// \param result contains the result of the device manager connecting to the host
-///
-- (void)didNotifyArrivalForDeviceManager:(CaptureHelperDeviceManager * _Nonnull)device withResult:(SKTResult)result;
-/// delegate called when a device manager disconnects from the host
-/// \param device contains the device manager information, such as device type
-///
-/// \param result contains the result of the device manager disconnecting from the host
-///
-- (void)didNotifyRemovalForDeviceManager:(CaptureHelperDeviceManager * _Nonnull)device withResult:(SKTResult)result;
-@end
-
-
-/// Capture Helper protocol to comply in order to receive the buttons state
-SWIFT_PROTOCOL("_TtP10CaptureSDK34CaptureHelperDeviceButtonsDelegate_")
-@protocol CaptureHelperDeviceButtonsDelegate <CaptureHelperDelegate>
-/// delegate called when the state of the device’s buttons has changed
-/// \param buttonsState contains the new buttons state
-///
-/// \param device contains the device information from which the buttons state has changed
-///
-- (void)didChangeButtonsState:(SKTCaptureButtonsState)buttonsState forDevice:(CaptureHelperDevice * _Nonnull)device;
-@end
-
-@class SKTCaptureDecodedData;
-
-/// Capture Helper protocol to comply in order to receive the decoded data
-SWIFT_PROTOCOL("_TtP10CaptureSDK38CaptureHelperDeviceDecodedDataDelegate_")
-@protocol CaptureHelperDeviceDecodedDataDelegate <CaptureHelperDelegate>
-/// delegate called when the decoded data is received from a device
-/// \param decodedData contains the decoded data with its related information
-///
-/// \param device contains the device information from which the data has been decoded
-///
-/// \param result contains the result of the decoded data, most of the time it’s success
-/// but in the case of SocketCam the result can be E_CANCELLED when the user cancel
-/// the scan.
-///
-- (void)didReceiveDecodedData:(SKTCaptureDecodedData * _Nullable)decodedData fromDevice:(CaptureHelperDevice * _Nonnull)device withResult:(SKTResult)result;
-@end
-
-
-/// Capture Helper protocol to comply in order to receive the power and battery information
-SWIFT_PROTOCOL("_TtP10CaptureSDK32CaptureHelperDevicePowerDelegate_")
-@protocol CaptureHelperDevicePowerDelegate <CaptureHelperDelegate>
-/// delegate called when the power state has changed, this is happening when plug in the device to a power adapter
-/// \param powerState contains the new power state of the device, @see SKTCapturePowerState
-///
-/// \param device contains the device information for which the power state has changed
-///
-- (void)didChangePowerState:(SKTCapturePowerState)powerState forDevice:(CaptureHelperDevice * _Nonnull)device;
-/// delegate called when the battery level has changed
-/// \param batteryLevel contains the battery level in %
-///
-/// \param device contains the device information for which the battery level has changed
-///
-- (void)didChangeBatteryLevel:(NSInteger)batteryLevel forDevice:(CaptureHelperDevice * _Nonnull)device;
-@end
-
-
-/// Capture Helper protocol to comply in order to receive the device arrival, removal notifications
-SWIFT_PROTOCOL("_TtP10CaptureSDK35CaptureHelperDevicePresenceDelegate_")
-@protocol CaptureHelperDevicePresenceDelegate <CaptureHelperDelegate>
-/// delegate called when a device connects to the host
-/// \param device contains the device information, such as friendly name and device type
-///
-/// \param result contains the result of the device connecting to the host
-///
-- (void)didNotifyArrivalForDevice:(CaptureHelperDevice * _Nonnull)device withResult:(SKTResult)result;
-/// delegate called when a device disconnects from the host
-/// \param device contains the device information, such as friendly name and device type
-///
-/// \param result contains the result of the device disconnecting from the host
-///
-- (void)didNotifyRemovalForDevice:(CaptureHelperDevice * _Nonnull)device withResult:(SKTResult)result;
-@end
-
-
-/// Capture Helper protocol to comply in order to receive any error coming
-/// from Capture
-SWIFT_PROTOCOL("_TtP10CaptureSDK26CaptureHelperErrorDelegate_")
-@protocol CaptureHelperErrorDelegate <CaptureHelperDelegate>
-/// delegate called when an unexpected error arises
-/// \param error contains the error code
-///
-- (void)didReceiveError:(SKTResult)error;
-@end
-
-
-/// Capture Helper protocol to comply in order to receive all the Capture delegates
-/// use this protocol if the applications needs to handle all the notifications
-/// coming from Capture
-SWIFT_PROTOCOL("_TtP10CaptureSDK24CaptureHelperAllDelegate_")
-@protocol CaptureHelperAllDelegate <CaptureHelperDeviceButtonsDelegate, CaptureHelperDeviceDecodedDataDelegate, CaptureHelperDeviceManagerPresenceDelegate, CaptureHelperDevicePowerDelegate, CaptureHelperDevicePresenceDelegate, CaptureHelperErrorDelegate>
-@end
-
-
-@class SKTCaptureDeviceInfo;
-@class NSData;
-@class SKTCaptureDataSource;
 
 /// Capture Helper device, represents a device that is attached to Capture
 SWIFT_CLASS("_TtC10CaptureSDK19CaptureHelperDevice")
 @interface CaptureHelperDevice : NSObject
-/// can store an object that can be used for extension
-@property (nonatomic, copy) NSDictionary<NSString *, id> * _Nonnull extensionProperties;
-/// contains information about the device
-/// such as the device friendly name and device type
-@property (nonatomic, strong) SKTCaptureDeviceInfo * _Nonnull deviceInfo;
-/// specify the main Dispatch queue so the UI controls
-/// can be updated directly inside the completion handlers
-@property (nonatomic, strong) dispatch_queue_t _Nullable dispatchQueue;
 - (nonnull instancetype)init SWIFT_UNAVAILABLE;
 + (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
-/// retrieve the device friendly name
-/// \param completion closure receiving the response with the result and the friendly name of
-/// the device if the result is successful
-///
-- (void)getFriendlyNameWithCompletionHandler:(void (^ _Nonnull)(SKTResult, NSString * _Nullable))completion;
-/// set the device friendly name. The device friendly name has a limit of
-/// 32 UTF8 characters including the null terminated character, an error is
-/// generated if the friendly name is too long.
-/// \param name friendly name to set the device with
-///
-/// \param completion closure receiving the result of setting the new friendly name
-///
-- (void)setFriendlyName:(NSString * _Nonnull)name withCompletionHandler:(void (^ _Nonnull)(SKTResult))completion;
-/// get the device Bluetooth address
-/// \param completion receiving the result of getting the device Bluetooth Address if the result
-///
-- (void)getBluetoothAddressWithCompletionHandler:(void (^ _Nonnull)(SKTResult, NSData * _Nullable))completion;
-/// get the device Firmware version
-/// \param completion receiving the result and the device Firmware version if the result is successful
-///
-- (void)getFirmwareVersionWithCompletionHandler:(void (^ _Nonnull)(SKTResult, SKTCaptureVersion * _Nullable))completion;
-/// set the device stand configuration
-/// \param config config stand configuration to set the device with
-///
-/// \param completion block receiving the result of changing the device stand configuration
-///
-- (void)setStandConfig:(SKTCaptureStandConfig)config withCompletionHandler:(void (^ _Nonnull)(SKTResult))completion;
-/// set the device decode action
-/// \param decodeAction decode action to set the device with
-///
-/// \param completion receiving the result of changing the device decode action
-///
-- (void)setDecodeAction:(SKTCaptureLocalDecodeAction)decodeAction withCompletionHandler:(void (^ _Nonnull)(SKTResult))completion;
-/// set the device local data acknowledgment
-/// \param dataAcknowledgment set how the device acknwoledges data locally on the device
-///
-/// \param completion receiving the result of changing the device stand configuration
-///
-- (void)setDataAcknowledgment:(SKTCaptureDeviceDataAcknowledgment)dataAcknowledgment withCompletionHandler:(void (^ _Nonnull)(SKTResult))completion;
-/// get the device postamble
-/// \param completion receiving the result and the device postamble if the result is successful
-///
-- (void)getPostambleWithCompletionHandler:(void (^ _Nonnull)(SKTResult, NSString * _Nullable))completion;
-/// set the device postamble
-/// \param postamble postamble to set the device with
-///
-/// \param completion receiving the result of changing the device postamble
-///
-- (void)setPostamble:(NSString * _Nonnull)postamble withCompletionHandler:(void (^ _Nonnull)(SKTResult))completion;
-/// get the device data source information
-/// \param data source Id contains the data source ID for which the information would be retrieved
-///
-/// \param completion receiving the result and the device data source information if the result is successful
-///
-- (void)getDataSourceInfoFromId:(SKTCaptureDataSourceID)dataSourceId withCompletionHandler:(void (^ _Nonnull)(SKTResult, SKTCaptureDataSource * _Nullable))completion;
-/// set the device data source information
-/// \param dataSource data source to enable or disable
-///
-/// \param completion receiving the result of changing the device data source
-///
-- (void)setDataSourceInfo:(SKTCaptureDataSource * _Nonnull)dataSource withCompletionHandler:(void (^ _Nonnull)(SKTResult))completion;
-/// set the device trigger
-/// this operation can programmatically start a device read operation, or it can
-/// disable the device trigger button until it gets re-enable again by using this
-/// function too.
-/// \param trigger contains the trigger command to apply
-///
-/// \param completion receiving the result of setting the trigger
-///
-- (void)setTrigger:(SKTCaptureTrigger)trigger withCompletionHandler:(void (^ _Nonnull)(SKTResult))completion;
-/// set the decoded data confirmation
-/// This function is required to acknowledge the decoded data that has been received
-/// when the data confirmation mode has been set to SKTCaptureDataConfirmationModeApp
-/// This function could also be called at any point of time if something needs to
-/// be reported to the user. By example making the scanner beep or vibrate to get
-/// the user to look at a screen.
-/// note: Good AND Bad settings can not be used together.
-/// \param led contains the led to light (None, Green, Red)
-///
-/// \param beep contains the beep to perform (None, Good, Bad)
-///
-/// \param rumble contains the rumble to perform (None, Good, Bad)
-///
-/// \param completion receiving the result of setting the decoded data confirmation
-///
-- (void)setDataConfirmationWithLed:(SKTCaptureDataConfirmationLed)led withBeep:(SKTCaptureDataConfirmationBeep)beep withRumble:(SKTCaptureDataConfirmationRumble)rumble withCompletionHandler:(void (^ _Nonnull)(SKTResult))completion;
-/// set the device notifications
-/// \param notifications select the notifications to receive
-///
-/// \param completion receiving the result of setting the notifications
-///
-- (void)setNotifications:(SKTCaptureNotifications)notifications withCompletionHandler:(void (^ _Nonnull)(SKTResult))completion;
-/// set the SocketCam overlay view parameters mainly for the ViewFinder view
-/// \param parameters dictionary containing the parameters for the ViewFinder
-///
-/// \param completion closure receiving the result of setting the Overlay View parameters
-///
-- (void)setSocketCamOverlayViewParameter:(NSDictionary<NSString *, id> * _Nonnull)parameters withCompletionHandler:(void (^ _Nonnull)(SKTResult))completion;
-/// get the SocketCam overlay view parameters used mainly for the ViewFinder view
-/// \param completion closure receiving the result and the overlay view parameters
-///
-- (void)getSocketCamOverlayViewParameterWithCompletionHandler:(void (^ _Nonnull)(SKTResult, NSDictionary<NSString *, id> * _Nullable))completion;
-/// send a specific command to the device
-/// These commands are specific to a device, therefore the device should first be identified
-/// before sending such commands otherwise an unpredicable result could happen if they are
-/// sent to a different device.
-/// \param command an array of bytes that holds the specific command to send to the device
-///
-/// \param completion receiving the result and the device specific command response if the result is successful
-///
-- (void)getDeviceSpecificCommand:(NSData * _Nonnull)command withCompletionHandler:(void (^ _Nonnull)(SKTResult, NSData * _Nullable))completion;
-/// Set a data format to the device
-/// Examples:
-/// ID-Only, TagType-and-ID, Data-Only, TagType-and-Data
-- (void)setDataFormatWithDataFormat:(SKTCaptureDataFormat)dataFormat completion:(void (^ _Nonnull)(SKTResult))completion;
-/// get a property using the Capture property object
-/// Usually the get property sends a property without arguments but
-/// the response in case of success contains a property response that
-/// holds the eventual arguments of the property.
-/// \param property reference to the property to set
-///
-/// \param completion receiving the result and the device specific command response if the result is successful
-///
-- (void)getProperty:(SKTCaptureProperty * _Nonnull)property withCompletionHandler:(void (^ _Nonnull)(SKTResult, SKTCaptureProperty * _Nullable))completion;
-/// set a property using the Capture property object
-/// Usually the set property does not return any property arguments,
-/// only the result is interesting to check to know if the set property
-/// has been successful.
-/// \param property reference to the property to set
-///
-/// \param completion receiving the result and the device specific command response if the result is successful
-///
-- (void)setProperty:(SKTCaptureProperty * _Nonnull)property withCompletionHandler:(void (^ _Nonnull)(SKTResult, SKTCaptureProperty * _Nullable))completion;
 @end
-
-
 
 
 SWIFT_CLASS("_TtC10CaptureSDK26CaptureHelperDeviceManager")
 @interface CaptureHelperDeviceManager : CaptureHelperDevice
-- (void)startDiscoveryWithTimeout:(NSInteger)timeout withCompletionHandler:(void (^ _Nonnull)(SKTResult))completion;
-- (void)setFavoriteDevices:(NSString * _Nonnull)favorites withCompletionHandler:(void (^ _Nonnull)(SKTResult))completion;
-- (void)getFavoriteDevicesWithCompletionHandler:(void (^ _Nonnull)(SKTResult, NSString * _Nullable))completion;
-- (void)getDeviceUniqueIdentifierFromDeviceGuid:(NSString * _Nonnull)deviceGuid withCompletionHandler:(void (^ _Nonnull)(SKTResult, NSString * _Nullable))completion;
 @end
-
-
-/// Capture Helper protocol to comply in order to receive the device manager discovery notifications
-SWIFT_PROTOCOL("_TtP10CaptureSDK43CaptureHelperDeviceManagerDiscoveryDelegate_")
-@protocol CaptureHelperDeviceManagerDiscoveryDelegate <CaptureHelperDelegate>
-/// delegate called when a device manager discovered a device
-/// \param device contains the device information, such as device type
-///
-/// \param deviceManager contains the device manager information from which the discovery was launched
-///
-- (void)didDiscoverDevice:(NSString * _Nonnull)device fromDeviceManager:(CaptureHelperDeviceManager * _Nonnull)deviceManager;
-/// delegate called when a device manager ended the discovery
-/// \param result contains the result of the device manager disconnecting from the host
-///
-/// \param deviceManager contains the device manager information from which the discovery ended
-///
-- (void)didEndDiscoveryWithResult:(SKTResult)result fromDeviceManager:(CaptureHelperDeviceManager * _Nonnull)deviceManager;
-@end
-
-
-
-
 
 /// Communication mode
 typedef SWIFT_ENUM(uint8_t, CommMode, open) {
@@ -660,6 +263,7 @@ typedef SWIFT_ENUM(uint8_t, KeyIndex, open) {
 };
 
 
+@class NSString;
 @class SCardReader;
 
 /// Represents a channel
@@ -1297,12 +901,9 @@ typedef unsigned int swift_uint4  __attribute__((__ext_vector_type__(4)));
 #pragma clang diagnostic ignored "-Watimport-in-framework-header"
 #endif
 @import CoreBluetooth;
-@import Dispatch;
 @import Foundation;
 @import ObjectiveC;
 #endif
-
-#import <CaptureSDK/CaptureSDK.h>
 
 #pragma clang diagnostic ignored "-Wproperty-attribute-mismatch"
 #pragma clang diagnostic ignored "-Wduplicate-method-arg"
@@ -1325,15 +926,6 @@ typedef SWIFT_ENUM(uint8_t, AuthenticationMode, open) {
   AuthenticationModeAes128 = 0x01,
 };
 
-@class NSString;
-@class SKTCapture;
-@protocol CaptureHelperDelegate;
-@class CaptureHelperDevice;
-@class CaptureHelperDeviceManager;
-@class SKTAppInfo;
-@class SKTCaptureEvent;
-@class SKTCaptureVersion;
-@class SKTCaptureProperty;
 
 /// Main entry point for using Capture
 /// 1- get a Capture instance by using CaptureHelper.sharedInstance
@@ -1341,408 +933,23 @@ typedef SWIFT_ENUM(uint8_t, AuthenticationMode, open) {
 /// 3- fill a SKTAppInfo with developer ID, bundle ID and AppKey coming from Socket Mobile developer portal
 /// 4- open Capture with the SKTAppInfo instance
 SWIFT_CLASS("_TtC10CaptureSDK13CaptureHelper")
-@interface CaptureHelper : NSObject <SKTCaptureDelegate>
-/// can store any object that can be used in an extension
-@property (nonatomic, copy) NSDictionary<NSString *, id> * _Nonnull extensionProperties;
-/// dispatch queue that can be set to the
-/// main queue so the completion handlers
-/// can update directly the UI controls
-/// set this property to DispatchQueue.main
-@property (nonatomic, strong) dispatch_queue_t _Nullable dispatchQueue;
-/// static shared instance of CaptureHelper
-SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, strong) CaptureHelper * _Nonnull sharedInstance;)
-+ (CaptureHelper * _Nonnull)sharedInstance SWIFT_WARN_UNUSED_RESULT;
+@interface CaptureHelper : NSObject
 - (nonnull instancetype)init SWIFT_UNAVAILABLE;
 + (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
-/// reference to the Capture API that can be used in
-/// extension class
-@property (nonatomic, readonly, strong) SKTCapture * _Nullable captureApi;
-/// push a delegate reference into the delegates stack
-/// each new View can push its delegate reference and the
-/// last one pushed is the one used for receiving the Capture
-/// delegates.
-/// NOTE: If a device is already connected to the host, doing a pushDelegate
-/// will call the didNotifyArrivalForDevice if the delegate pushed supports
-/// this in its protocol.
-/// \param delegate reference to a delegate to push in the delegates stack
-///
-///
-/// returns:
-///
-/// hasBeenPushed : true is the delegate has been pushed, false otherwise
-- (BOOL)pushDelegate:(id <CaptureHelperDelegate> _Nonnull)delegate;
-- (BOOL)popDelegate:(id <CaptureHelperDelegate> _Nonnull)delegate;
-/// get the list of devices this CaptureHelper has opened
-///
-/// returns:
-/// list of CaptureHelperDevice opened by Capture Helper
-- (NSArray<CaptureHelperDevice *> * _Nonnull)getDevices SWIFT_WARN_UNUSED_RESULT;
-/// get the list of device managers this CaptureHelper has opened
-///
-/// returns:
-/// list of CaptureHelperDeviceManager opened by Capture Helper
-- (NSArray<CaptureHelperDeviceManager *> * _Nonnull)getDeviceManagers SWIFT_WARN_UNUSED_RESULT;
-/// open Capture
-/// Main entry point of the Capture SDK. This method should be called first.
-/// open Capture with the application information which contains
-/// the developer ID, the application Bundle ID and the AppKey that
-/// can be retrieved on the Socket Mobile developer portal
-/// The delegates should be pushed before calling this method to make sure
-/// none of the events are missed.
-/// \param appInfo class containing developer ID, application Bundle ID and the AppKey
-///
-/// \param completionHandler called upon completion with the result code
-///
-- (void)openWithAppInfo:(SKTAppInfo * _Nonnull)appInfo withCompletionHandler:(void (^ _Nonnull)(SKTResult))completion;
-/// close Capture, once this method is called the application won’t
-/// receive anything from Capture
-/// it closes devices and device managers
-/// \param completionHandler called upon complete with the result code
-///
-- (void)closeWithCompletionHandler:(void (^ _Nonnull)(SKTResult))completion;
-/// delegate from Capture that is called each time a Capture event is fired
-/// \param event Capture event sent by Capture to the application
-///
-/// \param capture reference of the capture the event refers to
-///
-/// \param result result code of the event
-///
-- (void)didReceiveEvent:(SKTCaptureEvent * _Nonnull)event forCapture:(SKTCapture * _Nonnull)capture withResult:(SKTResult)result;
-/// retrieve the Capture version
-/// \param completion called upon completion of getting the Capture version
-/// with the result and the version as argument.
-///
-- (void)getVersionWithCompletionHandler:(void (^ _Nonnull)(SKTResult, SKTCaptureVersion * _Nullable))completion;
-/// set the confirmation mode to define how the decoded data should be confirmed.
-/// \param confirmationMode confirmationMode contains the confirmation mode to set Capture with
-///
-/// \param completion called upon completion of setting the confirmation mode
-/// with the result of setting the confirmation mode.
-///
-- (void)setConfirmationMode:(SKTCaptureDataConfirmation)confirmationMode withCompletionHandler:(void (^ _Nonnull)(SKTResult))completion;
-/// set the SocketCam (Scanning using the host camera) status. The status could
-/// be “not supported”, “supported”, “disabled” and “enabled”.
-/// \param status contains the new SocketCam status
-///
-/// \param completion called upon completion of setting the SocketCam status with the
-/// result as argument.
-///
-- (void)setSocketCamStatus:(SKTCaptureSocketCam)status withCompletionHandler:(void (^ _Nonnull)(SKTResult))completion;
-/// get a property using the Capture property object
-/// Usually the get property sends a property without arguments but
-/// the response in case of success contains a property response that
-/// holds the eventual arguments of the property.
-/// \param property reference to the property to set
-///
-/// \param completion receiving the result and the device specific command response if the result is successful
-///
-- (void)getProperty:(SKTCaptureProperty * _Nonnull)property withCompletionHandler:(void (^ _Nonnull)(SKTResult, SKTCaptureProperty * _Nullable))completion;
-/// set a property using the Capture property object
-/// Usually the set property does not return any property arguments,
-/// only the result is interesting to check to know if the set property
-/// has been successful.
-/// \param property reference to the property to set
-///
-/// \param completion receiving the result and the device specific command response if the result is successful
-///
-- (void)setProperty:(SKTCaptureProperty * _Nonnull)property withCompletionHandler:(void (^ _Nonnull)(SKTResult, SKTCaptureProperty * _Nullable))completion;
 @end
 
-
-/// Capture Helper base protocol does not have
-/// any delegate, it could be used for View Controllers
-/// that don’t require any notification from Capture
-SWIFT_PROTOCOL("_TtP10CaptureSDK21CaptureHelperDelegate_")
-@protocol CaptureHelperDelegate
-@end
-
-
-/// Capture Helper protocol to comply in order to receive the device manager arrival, removal notifications
-SWIFT_PROTOCOL("_TtP10CaptureSDK42CaptureHelperDeviceManagerPresenceDelegate_")
-@protocol CaptureHelperDeviceManagerPresenceDelegate <CaptureHelperDelegate>
-/// delegate called when a device manager connects to the host
-/// \param device contains the device manager information, such as device type
-///
-/// \param result contains the result of the device manager connecting to the host
-///
-- (void)didNotifyArrivalForDeviceManager:(CaptureHelperDeviceManager * _Nonnull)device withResult:(SKTResult)result;
-/// delegate called when a device manager disconnects from the host
-/// \param device contains the device manager information, such as device type
-///
-/// \param result contains the result of the device manager disconnecting from the host
-///
-- (void)didNotifyRemovalForDeviceManager:(CaptureHelperDeviceManager * _Nonnull)device withResult:(SKTResult)result;
-@end
-
-
-/// Capture Helper protocol to comply in order to receive the buttons state
-SWIFT_PROTOCOL("_TtP10CaptureSDK34CaptureHelperDeviceButtonsDelegate_")
-@protocol CaptureHelperDeviceButtonsDelegate <CaptureHelperDelegate>
-/// delegate called when the state of the device’s buttons has changed
-/// \param buttonsState contains the new buttons state
-///
-/// \param device contains the device information from which the buttons state has changed
-///
-- (void)didChangeButtonsState:(SKTCaptureButtonsState)buttonsState forDevice:(CaptureHelperDevice * _Nonnull)device;
-@end
-
-@class SKTCaptureDecodedData;
-
-/// Capture Helper protocol to comply in order to receive the decoded data
-SWIFT_PROTOCOL("_TtP10CaptureSDK38CaptureHelperDeviceDecodedDataDelegate_")
-@protocol CaptureHelperDeviceDecodedDataDelegate <CaptureHelperDelegate>
-/// delegate called when the decoded data is received from a device
-/// \param decodedData contains the decoded data with its related information
-///
-/// \param device contains the device information from which the data has been decoded
-///
-/// \param result contains the result of the decoded data, most of the time it’s success
-/// but in the case of SocketCam the result can be E_CANCELLED when the user cancel
-/// the scan.
-///
-- (void)didReceiveDecodedData:(SKTCaptureDecodedData * _Nullable)decodedData fromDevice:(CaptureHelperDevice * _Nonnull)device withResult:(SKTResult)result;
-@end
-
-
-/// Capture Helper protocol to comply in order to receive the power and battery information
-SWIFT_PROTOCOL("_TtP10CaptureSDK32CaptureHelperDevicePowerDelegate_")
-@protocol CaptureHelperDevicePowerDelegate <CaptureHelperDelegate>
-/// delegate called when the power state has changed, this is happening when plug in the device to a power adapter
-/// \param powerState contains the new power state of the device, @see SKTCapturePowerState
-///
-/// \param device contains the device information for which the power state has changed
-///
-- (void)didChangePowerState:(SKTCapturePowerState)powerState forDevice:(CaptureHelperDevice * _Nonnull)device;
-/// delegate called when the battery level has changed
-/// \param batteryLevel contains the battery level in %
-///
-/// \param device contains the device information for which the battery level has changed
-///
-- (void)didChangeBatteryLevel:(NSInteger)batteryLevel forDevice:(CaptureHelperDevice * _Nonnull)device;
-@end
-
-
-/// Capture Helper protocol to comply in order to receive the device arrival, removal notifications
-SWIFT_PROTOCOL("_TtP10CaptureSDK35CaptureHelperDevicePresenceDelegate_")
-@protocol CaptureHelperDevicePresenceDelegate <CaptureHelperDelegate>
-/// delegate called when a device connects to the host
-/// \param device contains the device information, such as friendly name and device type
-///
-/// \param result contains the result of the device connecting to the host
-///
-- (void)didNotifyArrivalForDevice:(CaptureHelperDevice * _Nonnull)device withResult:(SKTResult)result;
-/// delegate called when a device disconnects from the host
-/// \param device contains the device information, such as friendly name and device type
-///
-/// \param result contains the result of the device disconnecting from the host
-///
-- (void)didNotifyRemovalForDevice:(CaptureHelperDevice * _Nonnull)device withResult:(SKTResult)result;
-@end
-
-
-/// Capture Helper protocol to comply in order to receive any error coming
-/// from Capture
-SWIFT_PROTOCOL("_TtP10CaptureSDK26CaptureHelperErrorDelegate_")
-@protocol CaptureHelperErrorDelegate <CaptureHelperDelegate>
-/// delegate called when an unexpected error arises
-/// \param error contains the error code
-///
-- (void)didReceiveError:(SKTResult)error;
-@end
-
-
-/// Capture Helper protocol to comply in order to receive all the Capture delegates
-/// use this protocol if the applications needs to handle all the notifications
-/// coming from Capture
-SWIFT_PROTOCOL("_TtP10CaptureSDK24CaptureHelperAllDelegate_")
-@protocol CaptureHelperAllDelegate <CaptureHelperDeviceButtonsDelegate, CaptureHelperDeviceDecodedDataDelegate, CaptureHelperDeviceManagerPresenceDelegate, CaptureHelperDevicePowerDelegate, CaptureHelperDevicePresenceDelegate, CaptureHelperErrorDelegate>
-@end
-
-
-@class SKTCaptureDeviceInfo;
-@class NSData;
-@class SKTCaptureDataSource;
 
 /// Capture Helper device, represents a device that is attached to Capture
 SWIFT_CLASS("_TtC10CaptureSDK19CaptureHelperDevice")
 @interface CaptureHelperDevice : NSObject
-/// can store an object that can be used for extension
-@property (nonatomic, copy) NSDictionary<NSString *, id> * _Nonnull extensionProperties;
-/// contains information about the device
-/// such as the device friendly name and device type
-@property (nonatomic, strong) SKTCaptureDeviceInfo * _Nonnull deviceInfo;
-/// specify the main Dispatch queue so the UI controls
-/// can be updated directly inside the completion handlers
-@property (nonatomic, strong) dispatch_queue_t _Nullable dispatchQueue;
 - (nonnull instancetype)init SWIFT_UNAVAILABLE;
 + (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
-/// retrieve the device friendly name
-/// \param completion closure receiving the response with the result and the friendly name of
-/// the device if the result is successful
-///
-- (void)getFriendlyNameWithCompletionHandler:(void (^ _Nonnull)(SKTResult, NSString * _Nullable))completion;
-/// set the device friendly name. The device friendly name has a limit of
-/// 32 UTF8 characters including the null terminated character, an error is
-/// generated if the friendly name is too long.
-/// \param name friendly name to set the device with
-///
-/// \param completion closure receiving the result of setting the new friendly name
-///
-- (void)setFriendlyName:(NSString * _Nonnull)name withCompletionHandler:(void (^ _Nonnull)(SKTResult))completion;
-/// get the device Bluetooth address
-/// \param completion receiving the result of getting the device Bluetooth Address if the result
-///
-- (void)getBluetoothAddressWithCompletionHandler:(void (^ _Nonnull)(SKTResult, NSData * _Nullable))completion;
-/// get the device Firmware version
-/// \param completion receiving the result and the device Firmware version if the result is successful
-///
-- (void)getFirmwareVersionWithCompletionHandler:(void (^ _Nonnull)(SKTResult, SKTCaptureVersion * _Nullable))completion;
-/// set the device stand configuration
-/// \param config config stand configuration to set the device with
-///
-/// \param completion block receiving the result of changing the device stand configuration
-///
-- (void)setStandConfig:(SKTCaptureStandConfig)config withCompletionHandler:(void (^ _Nonnull)(SKTResult))completion;
-/// set the device decode action
-/// \param decodeAction decode action to set the device with
-///
-/// \param completion receiving the result of changing the device decode action
-///
-- (void)setDecodeAction:(SKTCaptureLocalDecodeAction)decodeAction withCompletionHandler:(void (^ _Nonnull)(SKTResult))completion;
-/// set the device local data acknowledgment
-/// \param dataAcknowledgment set how the device acknwoledges data locally on the device
-///
-/// \param completion receiving the result of changing the device stand configuration
-///
-- (void)setDataAcknowledgment:(SKTCaptureDeviceDataAcknowledgment)dataAcknowledgment withCompletionHandler:(void (^ _Nonnull)(SKTResult))completion;
-/// get the device postamble
-/// \param completion receiving the result and the device postamble if the result is successful
-///
-- (void)getPostambleWithCompletionHandler:(void (^ _Nonnull)(SKTResult, NSString * _Nullable))completion;
-/// set the device postamble
-/// \param postamble postamble to set the device with
-///
-/// \param completion receiving the result of changing the device postamble
-///
-- (void)setPostamble:(NSString * _Nonnull)postamble withCompletionHandler:(void (^ _Nonnull)(SKTResult))completion;
-/// get the device data source information
-/// \param data source Id contains the data source ID for which the information would be retrieved
-///
-/// \param completion receiving the result and the device data source information if the result is successful
-///
-- (void)getDataSourceInfoFromId:(SKTCaptureDataSourceID)dataSourceId withCompletionHandler:(void (^ _Nonnull)(SKTResult, SKTCaptureDataSource * _Nullable))completion;
-/// set the device data source information
-/// \param dataSource data source to enable or disable
-///
-/// \param completion receiving the result of changing the device data source
-///
-- (void)setDataSourceInfo:(SKTCaptureDataSource * _Nonnull)dataSource withCompletionHandler:(void (^ _Nonnull)(SKTResult))completion;
-/// set the device trigger
-/// this operation can programmatically start a device read operation, or it can
-/// disable the device trigger button until it gets re-enable again by using this
-/// function too.
-/// \param trigger contains the trigger command to apply
-///
-/// \param completion receiving the result of setting the trigger
-///
-- (void)setTrigger:(SKTCaptureTrigger)trigger withCompletionHandler:(void (^ _Nonnull)(SKTResult))completion;
-/// set the decoded data confirmation
-/// This function is required to acknowledge the decoded data that has been received
-/// when the data confirmation mode has been set to SKTCaptureDataConfirmationModeApp
-/// This function could also be called at any point of time if something needs to
-/// be reported to the user. By example making the scanner beep or vibrate to get
-/// the user to look at a screen.
-/// note: Good AND Bad settings can not be used together.
-/// \param led contains the led to light (None, Green, Red)
-///
-/// \param beep contains the beep to perform (None, Good, Bad)
-///
-/// \param rumble contains the rumble to perform (None, Good, Bad)
-///
-/// \param completion receiving the result of setting the decoded data confirmation
-///
-- (void)setDataConfirmationWithLed:(SKTCaptureDataConfirmationLed)led withBeep:(SKTCaptureDataConfirmationBeep)beep withRumble:(SKTCaptureDataConfirmationRumble)rumble withCompletionHandler:(void (^ _Nonnull)(SKTResult))completion;
-/// set the device notifications
-/// \param notifications select the notifications to receive
-///
-/// \param completion receiving the result of setting the notifications
-///
-- (void)setNotifications:(SKTCaptureNotifications)notifications withCompletionHandler:(void (^ _Nonnull)(SKTResult))completion;
-/// set the SocketCam overlay view parameters mainly for the ViewFinder view
-/// \param parameters dictionary containing the parameters for the ViewFinder
-///
-/// \param completion closure receiving the result of setting the Overlay View parameters
-///
-- (void)setSocketCamOverlayViewParameter:(NSDictionary<NSString *, id> * _Nonnull)parameters withCompletionHandler:(void (^ _Nonnull)(SKTResult))completion;
-/// get the SocketCam overlay view parameters used mainly for the ViewFinder view
-/// \param completion closure receiving the result and the overlay view parameters
-///
-- (void)getSocketCamOverlayViewParameterWithCompletionHandler:(void (^ _Nonnull)(SKTResult, NSDictionary<NSString *, id> * _Nullable))completion;
-/// send a specific command to the device
-/// These commands are specific to a device, therefore the device should first be identified
-/// before sending such commands otherwise an unpredicable result could happen if they are
-/// sent to a different device.
-/// \param command an array of bytes that holds the specific command to send to the device
-///
-/// \param completion receiving the result and the device specific command response if the result is successful
-///
-- (void)getDeviceSpecificCommand:(NSData * _Nonnull)command withCompletionHandler:(void (^ _Nonnull)(SKTResult, NSData * _Nullable))completion;
-/// Set a data format to the device
-/// Examples:
-/// ID-Only, TagType-and-ID, Data-Only, TagType-and-Data
-- (void)setDataFormatWithDataFormat:(SKTCaptureDataFormat)dataFormat completion:(void (^ _Nonnull)(SKTResult))completion;
-/// get a property using the Capture property object
-/// Usually the get property sends a property without arguments but
-/// the response in case of success contains a property response that
-/// holds the eventual arguments of the property.
-/// \param property reference to the property to set
-///
-/// \param completion receiving the result and the device specific command response if the result is successful
-///
-- (void)getProperty:(SKTCaptureProperty * _Nonnull)property withCompletionHandler:(void (^ _Nonnull)(SKTResult, SKTCaptureProperty * _Nullable))completion;
-/// set a property using the Capture property object
-/// Usually the set property does not return any property arguments,
-/// only the result is interesting to check to know if the set property
-/// has been successful.
-/// \param property reference to the property to set
-///
-/// \param completion receiving the result and the device specific command response if the result is successful
-///
-- (void)setProperty:(SKTCaptureProperty * _Nonnull)property withCompletionHandler:(void (^ _Nonnull)(SKTResult, SKTCaptureProperty * _Nullable))completion;
 @end
-
-
 
 
 SWIFT_CLASS("_TtC10CaptureSDK26CaptureHelperDeviceManager")
 @interface CaptureHelperDeviceManager : CaptureHelperDevice
-- (void)startDiscoveryWithTimeout:(NSInteger)timeout withCompletionHandler:(void (^ _Nonnull)(SKTResult))completion;
-- (void)setFavoriteDevices:(NSString * _Nonnull)favorites withCompletionHandler:(void (^ _Nonnull)(SKTResult))completion;
-- (void)getFavoriteDevicesWithCompletionHandler:(void (^ _Nonnull)(SKTResult, NSString * _Nullable))completion;
-- (void)getDeviceUniqueIdentifierFromDeviceGuid:(NSString * _Nonnull)deviceGuid withCompletionHandler:(void (^ _Nonnull)(SKTResult, NSString * _Nullable))completion;
 @end
-
-
-/// Capture Helper protocol to comply in order to receive the device manager discovery notifications
-SWIFT_PROTOCOL("_TtP10CaptureSDK43CaptureHelperDeviceManagerDiscoveryDelegate_")
-@protocol CaptureHelperDeviceManagerDiscoveryDelegate <CaptureHelperDelegate>
-/// delegate called when a device manager discovered a device
-/// \param device contains the device information, such as device type
-///
-/// \param deviceManager contains the device manager information from which the discovery was launched
-///
-- (void)didDiscoverDevice:(NSString * _Nonnull)device fromDeviceManager:(CaptureHelperDeviceManager * _Nonnull)deviceManager;
-/// delegate called when a device manager ended the discovery
-/// \param result contains the result of the device manager disconnecting from the host
-///
-/// \param deviceManager contains the device manager information from which the discovery ended
-///
-- (void)didEndDiscoveryWithResult:(SKTResult)result fromDeviceManager:(CaptureHelperDeviceManager * _Nonnull)deviceManager;
-@end
-
-
-
-
 
 /// Communication mode
 typedef SWIFT_ENUM(uint8_t, CommMode, open) {
@@ -1759,6 +966,7 @@ typedef SWIFT_ENUM(uint8_t, KeyIndex, open) {
 };
 
 
+@class NSString;
 @class SCardReader;
 
 /// Represents a channel

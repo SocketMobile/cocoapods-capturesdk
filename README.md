@@ -1,4 +1,4 @@
-# CaptureSDK Version 1.4.40
+# CaptureSDK Version 1.4.44
 
 Socket Mobile is a leading innovator of data capture and delivery solutions for enhanced productivity.
 
@@ -36,7 +36,7 @@ We have improved and changed some things in our architecture to prepare the futu
 - [cocoapods-capture](https://github.com/SocketMobile/cocoapods-capture) and [cocoapods-capture-obj-c](https://github.com/SocketMobile/cocoapods-capture-obj-c) are now deprecated. However, this new framework can be included in both Objective-C and/or Swift projects
 - The minimum target is now iOS 11.0
 - SocketCam C820, formerly known as SoftScan has been improved and allows you to scan with your device and not with a scanner
-- CaptureHelper is now included into the framework
+- Capture Helper is now included into the framework - [CaptureHelper](https://docs.socketmobile.com/capture/ios/en/latest/captureHelper.html) for Swift, [SKTCaptureHelper](https://docs.socketmobile.com/capture/ios/en/latest/captureHelperObjectiveC.html) for Objective-C
 
 
 # Quick install notes
@@ -80,7 +80,7 @@ Go to the `CaptureHelperDelegate` source and copy paste the delegates you want t
 # CaptureSDK usage
 `CaptureSDK` is described in greater details in the [documentation](https://docs.socketmobile.com/capture/ios/en/latest/ "CaptureSDK Documentation").
 
-The recommended way of using `CaptureSDK` is by using `CaptureHelper`. `CaptureHelper` is now included into the framework and not as a separate file.
+The recommended way of using `CaptureSDK` is by using `CaptureHelper`. `CaptureHelper` is now included into the framework and not as a separate file. [CaptureHelper](https://docs.socketmobile.com/capture/ios/en/latest/captureHelper.html) for Swift, [SKTCaptureHelper](https://docs.socketmobile.com/capture/ios/en/latest/captureHelperObjectiveC.html) for Objective-C
 
 ## 1. Getting a `CaptureHelper` instance
 `CaptureHelper` can be instantiated in one of your application controllers using its `CaptureHelper.sharedInstance` static member.
@@ -93,7 +93,7 @@ The reference of the controller deriving from at least one of the `CaptureHelper
 `CaptureHelper` maintains a delegates stack. The delegate on top of the stack is the one that receives the notification from `CaptureSDK`. So if the application has multiple views requiring the scanning feature, it can push a reference of a new view controller to the `CaptureHelper` delegates stack, and remove that reference when the view is no longer active.
 
 ## 3. Opening `CaptureHelper`
-In order to start `CaptureSDK`, the API uses the `openWithAppInfo:completionHandler` method with the application information.
+In order to start `CaptureSDK`, the API uses the `openWithAppInfo:withCompletionHandler` method with the application information.
 
 This open method **can be called only once**, in the main view controller by example, and the `CaptureHelper.sharedInstance` can be used at various place in the application code as singleton reference without the need to pass it through various controllers.
 
@@ -293,3 +293,5 @@ To add a bridging header file, follow those steps:
 ![Bridging Header file to set up](./docs/bridging-header-auto.png)
 
 2. Add `#import <CaptureSDK/CaptureSDK.h>` into this bridging header file
+
+3. If you're willing to use `Capture Helper`, please use [SKTCaptureHelper](https://docs.socketmobile.com/capture/ios/en/latest/captureHelperObjectiveC.html) for Objective-C which is suited for ObjectiveC

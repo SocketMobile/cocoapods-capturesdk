@@ -419,5 +419,6 @@ typedef void* SKTHandle;
 
 @end
 
+#import "SktCaptureHelper.h"
 
 #endif
