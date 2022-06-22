@@ -654,6 +654,7 @@ SWIFT_CLASS("_TtC10CaptureSDK9SktLogger")
 @end
 
 
+
 @class UIViewController;
 
 SWIFT_CLASS("_TtC10CaptureSDK24SocketCamControllerSwift")

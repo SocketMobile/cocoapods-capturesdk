@@ -656,6 +656,7 @@ SWIFT_CLASS("_TtC10CaptureSDK9SktLogger")
 @end
 
 
+
 @class UIViewController;
 
 SWIFT_CLASS("_TtC10CaptureSDK24SocketCamControllerSwift")
@@ -1357,6 +1358,7 @@ SWIFT_CLASS("_TtC10CaptureSDK9SktLogger")
 - (nonnull instancetype)init SWIFT_UNAVAILABLE;
 + (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
 @end
+
 
 
 @class UIViewController;
