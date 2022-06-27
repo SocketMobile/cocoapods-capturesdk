@@ -62,7 +62,7 @@
 		</data>
 		<key>Modules/CaptureSDK.swiftmodule/arm64-apple-ios-simulator.swiftmodule</key>
 		<data>
-		w4V7j6TKjLWETHsZl8M1oAIzbJM=
+		qcJIpIdmvQd84m8CdodhwSOJXRg=
 		</data>
 		<key>Modules/CaptureSDK.swiftmodule/x86_64-apple-ios-simulator.swiftdoc</key>
 		<data>
@@ -74,7 +74,7 @@
 		</data>
 		<key>Modules/CaptureSDK.swiftmodule/x86_64-apple-ios-simulator.swiftmodule</key>
 		<data>
-		VgXsMulpk1u8QGmB4DvfZtPlJ78=
+		K7hln5Q1pDvsE2RvhqWXI0FCnCc=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -242,7 +242,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			/7kDY8ix4CiOvXqv0KjL8SCtK0mMRy/hqMby8dnkSW8=
+			1NdkZRGCeOlR9oaeD6B8h0nT0pmrZdcU8T8RT/IU7AQ=
 			</data>
 		</dict>
 		<key>Modules/CaptureSDK.swiftmodule/x86_64-apple-ios-simulator.swiftdoc</key>
@@ -263,7 +263,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			pgNqnk4Zx3B3E5d0HlV9oTEHCfisgMUAPLnEkbU6skE=
+			/0ggNzzrhUTE3onkyteKWw7VyqJPyBRIUDBpEcgDtPI=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>
