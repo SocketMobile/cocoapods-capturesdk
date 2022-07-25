@@ -10,7 +10,7 @@
 		</data>
 		<key>Headers/Capture-Swift.h</key>
 		<data>
-		WHl2KUr6l8HCdqqPylThXVNJuCw=
+		hkRpYejLP1B0ahjPG/uEVTC6tu0=
 		</data>
 		<key>Headers/CaptureSDK.h</key>
 		<data>
@@ -50,31 +50,55 @@
 		</data>
 		<key>Info.plist</key>
 		<data>
-		jCAlB8m+TSjDJnITipAwD5DhASk=
+		t8osCWbEUP8krLxYiGxDRBcqtlI=
 		</data>
 		<key>Modules/CaptureSDK.swiftmodule/arm64-apple-ios-simulator.swiftdoc</key>
 		<data>
-		L8QCY/oJ6SuJ5vkWfNgh3b3Y6ts=
+		QHdTSitesmQ2RMozDBQ0FWu7fuI=
 		</data>
 		<key>Modules/CaptureSDK.swiftmodule/arm64-apple-ios-simulator.swiftinterface</key>
 		<data>
-		IiVZJ+hBrOgiCI341vVK2gMXYUs=
+		Kl1m3abNLcoiHKMEBwDFOEdgxeo=
 		</data>
 		<key>Modules/CaptureSDK.swiftmodule/arm64-apple-ios-simulator.swiftmodule</key>
 		<data>
-		qcJIpIdmvQd84m8CdodhwSOJXRg=
+		Q7A7sziO6PW2JAflwwpWcU6hxF0=
+		</data>
+		<key>Modules/CaptureSDK.swiftmodule/arm64.swiftdoc</key>
+		<data>
+		QHdTSitesmQ2RMozDBQ0FWu7fuI=
+		</data>
+		<key>Modules/CaptureSDK.swiftmodule/arm64.swiftinterface</key>
+		<data>
+		Kl1m3abNLcoiHKMEBwDFOEdgxeo=
+		</data>
+		<key>Modules/CaptureSDK.swiftmodule/arm64.swiftmodule</key>
+		<data>
+		Q7A7sziO6PW2JAflwwpWcU6hxF0=
 		</data>
 		<key>Modules/CaptureSDK.swiftmodule/x86_64-apple-ios-simulator.swiftdoc</key>
 		<data>
-		PHXMrnhC0J8PP242uD21ShJWTVY=
+		uV+1E4N5S2v2X1fF9zDyknUUa4A=
 		</data>
 		<key>Modules/CaptureSDK.swiftmodule/x86_64-apple-ios-simulator.swiftinterface</key>
 		<data>
-		YQgfdGpWAZ9z/qJmIsK/LKjfE4A=
+		Ult0XOjD0iNekrSI8CE4h1aPEdw=
 		</data>
 		<key>Modules/CaptureSDK.swiftmodule/x86_64-apple-ios-simulator.swiftmodule</key>
 		<data>
-		K7hln5Q1pDvsE2RvhqWXI0FCnCc=
+		x3URwe7r9SNaO27vIX8uF2dk63U=
+		</data>
+		<key>Modules/CaptureSDK.swiftmodule/x86_64.swiftdoc</key>
+		<data>
+		uV+1E4N5S2v2X1fF9zDyknUUa4A=
+		</data>
+		<key>Modules/CaptureSDK.swiftmodule/x86_64.swiftinterface</key>
+		<data>
+		Ult0XOjD0iNekrSI8CE4h1aPEdw=
+		</data>
+		<key>Modules/CaptureSDK.swiftmodule/x86_64.swiftmodule</key>
+		<data>
+		x3URwe7r9SNaO27vIX8uF2dk63U=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -158,7 +182,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			hfMnUo+cYOU7Z23Cug75juwUlxv1EQAAr0jw79EM+oU=
+			rAKnSywH865fGH68ImnF7gS1vTtV4wWE6HAQcAr8AeU=
 			</data>
 		</dict>
 		<key>Headers/CaptureSDK.h</key>
@@ -228,42 +252,84 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			SfFUV//rJFuV0fSPtC9B+sr6Fv/Qtq7t0EyMYexgIGg=
+			afhT4jbXSjXwI0ZOtgw0vqIMCFxGwVfmOADp63pYPjc=
 			</data>
 		</dict>
 		<key>Modules/CaptureSDK.swiftmodule/arm64-apple-ios-simulator.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			QY6MRJ1EqCj611C1xJkxqECokXZCxVLNVIwSmXAsrWo=
+			MnBy9Pug0eBpcZKOgtVQJXLCg3Cz3eSBnfzTrSwMilY=
 			</data>
 		</dict>
 		<key>Modules/CaptureSDK.swiftmodule/arm64-apple-ios-simulator.swiftmodule</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			1NdkZRGCeOlR9oaeD6B8h0nT0pmrZdcU8T8RT/IU7AQ=
+			puQAInqp88Q7I2feF39AcvWIw7M6APpwSyPCuduYFtE=
+			</data>
+		</dict>
+		<key>Modules/CaptureSDK.swiftmodule/arm64.swiftdoc</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			afhT4jbXSjXwI0ZOtgw0vqIMCFxGwVfmOADp63pYPjc=
+			</data>
+		</dict>
+		<key>Modules/CaptureSDK.swiftmodule/arm64.swiftinterface</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			MnBy9Pug0eBpcZKOgtVQJXLCg3Cz3eSBnfzTrSwMilY=
+			</data>
+		</dict>
+		<key>Modules/CaptureSDK.swiftmodule/arm64.swiftmodule</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			puQAInqp88Q7I2feF39AcvWIw7M6APpwSyPCuduYFtE=
 			</data>
 		</dict>
 		<key>Modules/CaptureSDK.swiftmodule/x86_64-apple-ios-simulator.swiftdoc</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			NHCAeF0tHxwOi37DkqXE9xdH4b5MugOkpJVLyE5AQ9g=
+			KjWBQlsry+Vif1kWRXqLC/2u8Bb7nKKeIRqBBI3Hy6Y=
 			</data>
 		</dict>
 		<key>Modules/CaptureSDK.swiftmodule/x86_64-apple-ios-simulator.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			2QisprqM/tlT+1KCVQ0TBO9uyPbySAE8kIKApeGf9YI=
+			QR0XZJFShL/vsU93pxfwYw5S/skDzLwSgac0trAZ0nM=
 			</data>
 		</dict>
 		<key>Modules/CaptureSDK.swiftmodule/x86_64-apple-ios-simulator.swiftmodule</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			/0ggNzzrhUTE3onkyteKWw7VyqJPyBRIUDBpEcgDtPI=
+			c08Lk38/wZuivwct6cofu/kr0khmJHpNtCPB4efwbII=
+			</data>
+		</dict>
+		<key>Modules/CaptureSDK.swiftmodule/x86_64.swiftdoc</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			KjWBQlsry+Vif1kWRXqLC/2u8Bb7nKKeIRqBBI3Hy6Y=
+			</data>
+		</dict>
+		<key>Modules/CaptureSDK.swiftmodule/x86_64.swiftinterface</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			QR0XZJFShL/vsU93pxfwYw5S/skDzLwSgac0trAZ0nM=
+			</data>
+		</dict>
+		<key>Modules/CaptureSDK.swiftmodule/x86_64.swiftmodule</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			c08Lk38/wZuivwct6cofu/kr0khmJHpNtCPB4efwbII=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>
