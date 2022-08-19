@@ -1,4 +1,4 @@
-# CaptureSDK Version 1.4.61 - Cocoapods
+# CaptureSDK Version 1.5.2 - Cocoapods
 
 Socket Mobile is a leading innovator of data capture and delivery solutions for enhanced productivity.
 
@@ -14,6 +14,12 @@ The CaptureSDK offers a built-in barcode scanner called SocketCam, allowing to t
 
 More documentation can be found [here](https://docs.socketmobile.com/capture/ios/en/latest/ "CaptureSDK Documentation").
 
+# Devices compatibility and CaptureSDK versions
+|       Devices                                          |          < 1.4         |          1.4           |          1.5          |
+| :----------------------------------------------------: | :--------------------: | :--------------------: | :-------------------: |
+|   **SocketCam C820**                                   |          ❌            |           ✅           |           ✅           |
+|   **S720/D720/S820**                                   |          ❌            |           ❌           |           ✅           |
+|   **D600, S550, and all other barcode scanners**       |          ✅            |           ✅           |           ✅           |
 
 # Table of Contents
 * [Breaking changes](#breaking-changes)
