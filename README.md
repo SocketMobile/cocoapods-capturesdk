@@ -1,4 +1,4 @@
-# CaptureSDK Version 1.5.2 - Cocoapods
+# CaptureSDK Version 1.5.5 - Cocoapods
 
 Socket Mobile is a leading innovator of data capture and delivery solutions for enhanced productivity.
 
@@ -56,7 +56,7 @@ The content of this file should be something like this assuming the name of your
 
 ```ruby
 target 'myProject'
-    pod 'CaptureSDK', '~> 1.4'
+    pod 'CaptureSDK', '~> 1.5'
 ```
 
 Once you have saved this file, from the terminal command prompt, type the command `pod install` and make sure your current directory is where the Podfile is.
