@@ -1,4 +1,4 @@
-# CaptureSDK Version 1.5.7 - Cocoapods
+# CaptureSDK Version 1.5.9 - Cocoapods
 
 Socket Mobile is a leading innovator of data capture and delivery solutions for enhanced productivity.
 
@@ -43,7 +43,7 @@ We have improved and changed some things in our architecture to prepare the futu
 - The minimum target is now iOS 11.0
 - SocketCam C820, formerly known as SoftScan has been improved and allows you to scan with your device and not with a scanner
 - Capture Helper is now included into the framework - [CaptureHelper](https://docs.socketmobile.com/capture/ios/en/latest/captureHelper.html) for Swift, [SKTCaptureHelper](https://docs.socketmobile.com/capture/ios/en/latest/captureHelperObjectiveC.html) for Objective-C
-- Bitcode has been enabled in the version 1.5.5 but disabled in the version 1.5.7 build with Xcode 14. If you need a version with Bitcode enabled, please use the 1.5.5
+- Bitcode has been enabled in the version 1.5.5 but disabled in the version 1.5.9 build with Xcode 14. If you need a version with Bitcode enabled, please use the 1.5.5
 
 
 # Quick install notes
