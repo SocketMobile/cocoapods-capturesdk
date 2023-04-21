@@ -1,6 +1,17 @@
 # Change Log
 This file tracks released versions with the changes made to this project.
 
+## [Version 1.6.34](https://github.com/SocketMobile/cocoapods-capturesdk/releases/tag/1.6.34)
+### New
+  * n/a
+
+### Improvements
+  * n/a
+
+### Bug fixes
+  * Fix error when building the Cocoapods due to SktCaptureProperty.h file still present even though it shouldn't in CaptureSDK/Headers directories
+
+
 ## [Version 1.6.33](https://github.com/SocketMobile/cocoapods-capturesdk/releases/tag/1.6.33)
 ### New
   * n/a
