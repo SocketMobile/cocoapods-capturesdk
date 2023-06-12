@@ -1,6 +1,18 @@
 # Change Log
 This file tracks released versions with the changes made to this project.
 
+## [Version 1.6.39](https://github.com/SocketMobile/cocoapods-capturesdk/releases/tag/1.6.39)
+### New
+  * n/a
+
+### Improvements
+  * Add `getDeviceManagersList` to CaptureHelper Objective-C
+  * Add Get/Set Property methods for CaptureHelperDeviceManager to CaptureHelper Objective-C  
+
+### Bug fixes
+  * Bluetooth connection on iPadOS 16.5 is retained by an application containing CaptureSDK. This issue is now fixed
+  * Fix get battery level command for S550 and S370
+
 ## [Version 1.6.34](https://github.com/SocketMobile/cocoapods-capturesdk/releases/tag/1.6.34)
 ### New
   * n/a
@@ -10,7 +22,6 @@ This file tracks released versions with the changes made to this project.
 
 ### Bug fixes
   * Fix error when building the Cocoapods due to SktCaptureProperty.h file still present even though it shouldn't in CaptureSDK/Headers directories
-
 
 ## [Version 1.6.33](https://github.com/SocketMobile/cocoapods-capturesdk/releases/tag/1.6.33)
 ### New
