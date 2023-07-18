@@ -1,4 +1,4 @@
-# CaptureSDK Version 1.6.39 - Cocoapods
+# CaptureSDK Version 1.7.5 - Cocoapods
 
 Socket Mobile is a leading innovator of data capture and delivery solutions for enhanced productivity.
 
@@ -15,12 +15,13 @@ The CaptureSDK offers a built-in barcode scanner called SocketCam, allowing to t
 More documentation can be found [here](https://docs.socketmobile.com/capture/ios/en/latest/ "CaptureSDK Documentation").
 
 # Devices compatibility and CaptureSDK versions
-|       Devices                                          |          < 1.4         |          1.4           |          1.5          |          1.6          |
-| :----------------------------------------------------: | :--------------------: | :--------------------: | :-------------------: | :-------------------: |
-|   **SocketCam C820**                                   |          ❌            |           ✅           |           ✅           |           ✅          |
-|   **S720/D720/S820**                                   |          ❌            |           ❌           |           ✅           |           ✅          |
-|   **D600, S550, and all other barcode scanners**       |          ✅            |           ✅           |           ✅           |           ✅          |
-|   **S370**                                             |          ❌            |           ❌           |           ❌           |           ✅          |
+|       Devices                                          |          < 1.4         |          1.4           |          1.5          |          1.6          |         1.7          |
+| :----------------------------------------------------: | :--------------------: | :--------------------: | :-------------------: | :-------------------: |:-------------------: |
+|   **SocketCam C820**                                   |          ❌            |           ✅           |           ✅           |           ✅          |           ✅          |
+|   **S720/D720/S820**                                   |          ❌            |           ❌           |           ✅           |           ✅          |           ✅          |
+|   **D600, S550, and all other barcode scanners**       |          ✅            |           ✅           |           ✅           |           ✅          |           ✅          |
+|   **S370**                                             |          ❌            |           ❌           |           ❌           |           ✅          |           ✅          |
+|   **M930**                                             |          ❌            |           ❌           |           ❌           |           ❌          |           ✅          |
 
 # Table of Contents
 * [Breaking changes](#breaking-changes)
@@ -58,7 +59,7 @@ The content of this file should be something like this assuming the name of your
 
 ```ruby
 target 'myProject'
-    pod 'CaptureSDK', '~> 1.6'
+    pod 'CaptureSDK', '~> 1.7'
 ```
 
 Once you have saved this file, from the terminal command prompt, type the command `pod install` and make sure your current directory is where the Podfile is.
