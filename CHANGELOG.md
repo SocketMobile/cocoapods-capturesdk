@@ -1,6 +1,193 @@
 # Change Log
 This file tracks released versions with the changes made to this project.
 
+## Version 1.9.59
+
+### New
+
+  * CaptureSDK is now built for iOS 18 with Xcode 16
+
+### Improvements
+
+  * Update SwiftDecoder to 6.0.9
+
+  * Add helpers on CaptureHelperDevice to know if it’s a barcode or NFC reader
+
+### Bug fixes
+
+  * When closing CaptureSDK a result is now returned
+
+## Version 1.9.36
+
+### New
+
+  * N/A
+
+
+### Improvements
+
+  * Update SwiftDecoder to 6.0.7
+
+  * Increased the minimum target to iOS 13.0
+
+### Bug fixes
+
+  * N/A
+
+## Version 1.9.32
+
+### New
+
+  * N/A
+
+
+### Improvements
+
+  * N/A
+
+
+### Bug fixes
+
+  * The signature of our CaptureSDK has been fixed
+
+## Version 1.9.30
+
+### New
+
+  * N/A
+
+
+### Improvements
+
+  * Documentation improved for Info.plist key-values to add
+
+  * Update SwiftDecoder to 5.8.15
+
+
+
+### Bug fixes
+
+  * N/A
+
+
+## Version 1.9.27
+
+### New
+
+  * Add a button to switch camera in SocketCam
+
+
+
+### Improvements
+
+  * Improve documentation for SocketCam view controller usage
+
+
+
+### Bug fixes
+
+  * N/A
+
+
+## Version 1.9.21
+
+### New
+
+  * N/A
+
+
+### Improvements
+
+  * N/A
+
+
+### Bug fixes
+
+  * Add the missing property result in the completion handler of setTrigger in the documentation
+
+  * Add the property result in the completion handler of setTrigger in CaptureHelper for Objective-C
+
+  * SocketCam status triggered several times prevented its device arrival
+
+
+
+## Version 1.9.18
+
+### New
+
+  * N/A
+
+
+### Improvements
+
+  * N/A
+
+
+### Bug fixes
+
+  * Add CaptureHelperDeviceManagerDiscoveryDelegate to CaptureHelperAllDelegate
+
+  * Fix crash of [CSktXmlTag](https://github.com/SocketMobile/cocoapods-capturesdk/issues/9)
+
+
+
+## Version 1.9.4
+### New
+  * Support of new device S320 barcode scanner
+
+
+### Improvements
+  * N/A
+
+
+### Bug fixes
+  * N/A
+
+
+## Version 1.8.57
+### New
+  * N/A
+
+### Improvements
+  * We have improved the documentation for the new implementation of SocketCam
+
+### Bug fixes
+  * Fixed a crash in SktCaptureProtocol (https://github.com/SocketMobile/swift-package-capturesdk/issues/16)
+  * Fixed a crash in C860 that might occur after some openings of the view controller
+
+## Version 1.8.53
+### New
+  * N/A
+
+### Improvements
+  * N/A
+
+### Bug fixes
+  * Getting the version of CaptureSDK returns the right value
+  * Building failed because of `CoreAudioTypes` framework is fixed
+
+## Version 1.8.51
+### New
+  * SocketCam C860 is available. See more details [here](https://www.socketmobile.com/readers-accessories/product-families/socketcam)
+  * SocketCam C820 and C860 are available as a view controller that can be displayed as a popover, a subview and not only in full screen
+
+### Improvements
+  * You can chose to show or hide the close button of SocketCam depending on the flow of your app
+
+### Bug fixes
+  * The signature of the SDK that was not validated by Xcode 15 for an unknown reason
+
+## Version 1.8.47
+### New
+  * SocketCam C860 is available. See more details [here](https://www.socketmobile.com/readers-accessories/product-families/socketcam)
+  * SocketCam C820 and C860 are available as a view controller that can be displayed as a popover, a subview and not only in full screen
+
+### Improvements
+  * N/A
+
+### Bug fixes
+  * Getting the version of CaptureSDK returns the right value
+
 ## [Version 1.8.34](https://github.com/SocketMobile/cocoapods-capturesdk/releases/tag/1.8.34)
 ### New
   * Minimum target deployment: iOS 12.0
