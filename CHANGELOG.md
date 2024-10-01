@@ -1,6 +1,25 @@
 # Change Log
 This file tracks released versions with the changes made to this project.
 
+## Version 1.9.63
+
+### New
+
+  * N/A
+
+
+### Improvements
+
+  * N/A
+
+
+### Bug fixes
+
+  * Continuous scan on C860 has been fixed
+
+  * Flash toggle has been fixed for SocketCam C860
+
+
 ## Version 1.9.59
 
 ### New
