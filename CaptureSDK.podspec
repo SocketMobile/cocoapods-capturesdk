@@ -1,23 +1,24 @@
 Pod::Spec.new do |s|
   s.name         = "CaptureSDK"
-  s.version      = "1.8.34"
+  s.version      = "1.9.73"
   s.summary      = "CaptureSDK for Socket Mobile wireless devices."
-  s.homepage     = "https://github.com/SocketMobile/cocoapods-capturesdk"
+  s.homepage     = "https://socketmobile.com"
   s.license      = { :type => "COMMERCIAL", :file => "LICENSE" }
-  s.author       = { "Socket" => "developers@socketmobile.com" }
-  s.documentation_url   = "https://docs.socketmobile.com/capture/ios/en/latest/"
-  s.platform     = :ios, "12.0"
+  s.author       = { "Socket Mobile" => "developers@socketmobile.com" }
+  s.documentation_url = "https://docs.socketmobile.com/capture/ios/en/latest/"
+  s.platform     = :ios, "13.0"
   s.source       = {
       :git => "https://github.com/SocketMobile/cocoapods-capturesdk.git",
-      :tag => "1.8.34"
+      :tag => "1.9.73"
   }
-  s.ios.deployment_target = "12.0"
-  s.swift_version = '5.0'
-  s.pod_target_xcconfig = { 'SWIFT_VERSION' => '5.0', 'SWIFT_OPTIMIZATION_LEVEL' => '-Owholemodule' }
+  s.ios.deployment_target = "13.0"
+  s.swift_version = "5.0"
 
-  s.vendored_frameworks = 'lib/CaptureSDK.xcframework'
+  s.vendored_frameworks = "lib/CaptureSDK.xcframework"
   
   s.ios.libraries = "c++","icucore"
-  s.frameworks = "ExternalAccessory", "AudioToolbox", "AVFoundation", "CoreBluetooth", "Security"
+  s.frameworks = "ExternalAccessory", "AudioToolbox", "AVFoundation", "CoreBluetooth"
+
+  s.dependency "SwiftDecoderSDK", "~> 6.0.10"
 
 end

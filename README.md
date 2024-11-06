@@ -1,12 +1,4 @@
-# ********************************************************
-# THIS REPOSITORY HAS BEEN MOVED BEHIND OUR [DEVELOPERS PORTAL](https://www.socketmobile.com/dev-portal/portal)
-# BUT PLEASE WATCH 👁️‍🗨️ ALL ACTIVITY IT AS WE REPORT THE README AND CHANGELOG HERE. YOU'LL BE NOTIFIED WITH:
-# - Bug fixes
-# - OS version update
-# - Support of new products
-# ********************************************************
-
-# CaptureSDK Version 1.9.63 - Cocoapods
+# CaptureSDK Version 1.9.73 - Cocoapods
 
 Socket Mobile is a leading innovator of data capture and delivery solutions for enhanced productivity.
 
@@ -70,17 +62,12 @@ You need to add an **additional source** to your `Podfile` in order to get those
 
 ```ruby
 source 'https://github.com/CocoaPods/Specs.git'
-source 'https://my-private-specs.git'
-source 'https://oauth2:<YOUR-OAUTH-TOKEN-HERE>@sdk.socketmobile.com/capture/cocoapods-repo.git' // Socket Mobile private Cocoapods repository
 
 target 'myProject'
-  ...
-  pod 'CaptureSDK', :git => 'https://oauth2:<YOUR-OAUTH-TOKEN-HERE>@sdk.socketmobile.com/capture/cocoapods-capturesdk.git'
-  ...
-end
+    pod 'CaptureSDK', '~> 1.9'
 ```
 
-Once you have saved this file, from the terminal command prompt, type the command `pod install` and make sure your current directory is where the Podfile is.
+Once you have saved this file, from the terminal command prompt, type the command `pod install --repo-update` and make sure your current directory is where the Podfile is.
 
 This creates a workspace file. If you have Xcode open on your project, you need to close it, and re-open your project using this time the workspace file.
 
