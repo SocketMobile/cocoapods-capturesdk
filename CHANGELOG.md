@@ -1,6 +1,24 @@
 # Change Log
 This file tracks released versions with the changes made to this project.
 
+## Version 1.9.133
+
+### New
+
+  * N/A
+
+
+### Improvements
+
+  * Show Single Partnership also in full screen on iPhone
+
+
+
+### Bug fixes
+
+  * N/A
+
+
 ## Version 1.9.129
 
 ### New
@@ -13,23 +31,6 @@ This file tracks released versions with the changes made to this project.
 
   * We have improved the discovery of Bluetooth Low Energy devices after reset the Single Partnership
 
-
-
-### Bug fixes
-
-  * N/A
-
-
-## Version 1.9.123
-
-### New
-
-  * N/A
-
-
-### Improvements
-
-  * N/A
 
 
 ### Bug fixes
@@ -56,23 +57,6 @@ This file tracks released versions with the changes made to this project.
 
 
 ## Version 1.9.118
-
-### New
-
-  * N/A
-
-
-### Improvements
-
-  * N/A
-
-
-### Bug fixes
-
-  * N/A
-
-
-## Version 1.9.115
 
 ### New
 
