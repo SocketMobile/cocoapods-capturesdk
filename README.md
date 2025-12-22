@@ -1,4 +1,4 @@
-# CaptureSDK Version 2.0.31 - Cocoapods
+# CaptureSDK Version 2.0.57 - Cocoapods
 
 Socket Mobile is a leading innovator of data capture and delivery solutions for enhanced productivity.
 
