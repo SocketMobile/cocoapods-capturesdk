@@ -1,4 +1,4 @@
-# CaptureSDK Version 2.0.73 - Cocoapods
+# CaptureSDK Version 2.1.15 - Cocoapods
 
 Socket Mobile is a leading innovator of data capture and delivery solutions for enhanced productivity.
 
@@ -22,49 +22,22 @@ More documentation can be found [here in our CaptureSDK Documentation](https://d
 
 **- Write some code to fit the Bluetooth discovery flow to your application's design by creating an UI that starts and shows discovered devices and select them to be paired to your application.**
 
-We also have deprecated some CaptureHelper methods to avoid confusion and got rid of the `Device Manager`.
-
-Here's the changes in a nutshell:
-
-- The protocol **CaptureHelperDeviceManagerDelegate** will be removed and its methods **didNotifyArrivalForDeviceManager** and **didNotifyRemovalForDeviceManager** will be removed as well.
-
-- The protocol **CaptureHelperDeviceManagerDiscoveryDelegate** will be renamed to **CaptureHelperDiscoveryDelegate**. Its methods **didDiscoverDevice(device:deviceManager:)** and **didEndDiscoveryWithResult(result:deviceManager:)** will be renamed to **didDiscoverDevice(device:)** and **didEndDiscoveryWithResult(result:)** respectively.
-
-- The class **CaptureHelperDeviceManager** will be removed. You can use its methods directly from **CaptureHelper**. For instance:
-
-```swift
-bleDeviceManager.connectToDiscoveredDevice(device) { result in
-    print("connectToDiscoveredDevice returns: \(result.rawValue)")
-}
-
-/// Becomes:
-
-CaptureHelper.sharedInstance.connectToDiscoveredDevice(device) { result in
-    print("connectToDiscoveredDevice returns: \(result.rawValue)")
-}
-
-/// You can use a CaptureHelper variable instead of the singleton instance as well.
-```
-
-- The **CaptureHelperDeviceManager** methods **setFavoriteDevices(favorites:)**, **getFavoriteDevicesWithCompletionHandler** will be removed. No favorites management is needed anymore in CaptureSDK 2.0.
-
-- The **CaptureHelperDeviceManager** method **startDiscoveryWithTimeout(timeout:)** is replaced by **addBluetoothDevice(bluetoothDiscoveryMode:)** in the main **CaptureHelper** class.
-
-- The **CaptureHelperDeviceManager** methods **getDeviceUniqueIdentifierFromDeviceGuid(deviceGuid:)**, **connectToDiscoveredDevice(device:)**, **disconnectFromDiscoveredDevice(device:)** are moved to the main **CaptureHelper** class.
+We also have removed the deprecated CaptureHelper methods to avoid confusion and got rid of the `Device Manager` as a public object.
 
 [See our Getting Started section in our documentation](https://docs.socketmobile.dev/capture/ios/en/latest/gettingStarted.html)
 
 ## Devices compatibility and CaptureSDK versions
 
-|       Devices                                          |          < 2.0         |          2.0           |
-| :----------------------------------------------------: | :--------------------: | :--------------------: |
-|   **SocketCam C820, C860**                             |          ✅            |           ✅           |
-|   **S720/D720/S820**                                   |          ✅            |           ✅           |
-|   **D600, S550, and all other barcode scanners**       |          ✅            |           ✅           |
-|   **S370**                                             |          ✅            |           ✅           |
-|   **M930**                                             |          ✅            |           ✅           |
-|   **S320**                                             |          ✅            |           ✅           |
-|   **S721** (new Bluetooth LE barcode scanner)          |          ❌            |           ✅           |
+|       Devices                                          |          < 2.0         |          2.0           |          2.1           |
+| :----------------------------------------------------: | :--------------------: | :--------------------: | :--------------------: |
+|   **SocketCam C820, C860**                             |          ✅            |           ✅           |           ✅           |
+|   **S720/D720/S820**                                   |          ✅            |           ✅           |           ✅           |
+|   **D600, S550, and all other barcode scanners**       |          ✅            |           ✅           |           ✅           |
+|   **S370**                                             |          ✅            |           ✅           |           ✅           |
+|   **M930**                                             |          ✅            |           ✅           |           ✅           |
+|   **S320**                                             |          ✅            |           ✅           |           ✅           |
+|   **S721** (new Bluetooth LE barcode scanner)          |          ❌            |           ✅           |           ✅           |
+|   **SM Link and Smart Dock**                           |          ❌            |           ❌           |           ✅           |
 
 ## Table of Contents
 

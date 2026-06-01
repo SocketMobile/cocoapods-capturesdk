@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "CaptureSDK"
-  s.version      = "2.0.73"
+  s.version      = "2.1.15"
   s.summary      = "CaptureSDK for Socket Mobile wireless devices."
   s.homepage     = "https://socketmobile.com"
   s.license      = { :type => "COMMERCIAL", :file => "LICENSE" }
@@ -9,7 +9,7 @@ Pod::Spec.new do |s|
   s.platform     = :ios, "15.0"
   s.source       = {
       :git => "https://github.com/SocketMobile/cocoapods-capturesdk.git",
-      :tag => "2.0.73"
+      :tag => "2.1.15"
   }
   s.ios.deployment_target = "15.0"
   s.swift_version = "5.0"
@@ -19,6 +19,6 @@ Pod::Spec.new do |s|
   s.ios.libraries = "c++","icucore"
   s.frameworks = "ExternalAccessory", "AudioToolbox", "AVFoundation", "CoreBluetooth"
 
-  s.dependency "SwiftDecoderSDK", "~> 6.5.0"
+  s.dependency "SwiftDecoderSDK", "~> 6.6.0"
 
 end
